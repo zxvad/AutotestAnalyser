@@ -1,19 +1,19 @@
 #include "stdio.h"
 #include "conio.h"
 #include "time.h"
-#include "vector"
+#include "string"
 #include "iostream"
 
 using namespace std;
 
-void Error(char *err)
-	{
+void ShowError(string err)
+{
 	printf("\n Ошибка: %s",err);
-	};
+};
 
 //Данные о сигнале
 struct SignalDescription
-	{
+{
 	int ENGINEER_VALUE,
 		ENGINEER_MIN_VALUE,
 		ENGINEER_MAX_VALUE,
@@ -52,50 +52,49 @@ struct SignalDescription
 		FILTER_KOEFF,
 		SENS_EMUL_VALUE,
 		DISENS_INVERS_ON;
-	};
+};
 
 //Класс исходного сигнала
 class СInputSignal
-	{
+{
 	int id;
 	int ID_SIGNALS_TO_AUTOMATISATION;
 	SignalDescription TAG_FIELD_NAME;
 	bool SIGNAL_SWITCH_TYPE;
 	tm CHANGE_DATE;
-	};
+};
 
 //Совершенные события
 class CDoneEvent
-	{
+{
 	int id;
 	int idEvent;
-	tm CHANGE_DATE;
 	public:
 		//анализ исходного сигнала, нахождение совершенных событий
 		void Set();
 		//вывод списка совершенных событий
 		void Show();
-	};
+};
 
 //Необходимые события
 class CNeedEvent
-	{
+{
 	int id;
 	int idEvent;
 	public:
 		CNeedEvent();
 		//Добавление необходимого события
-		void Add(char *name);
+		void Add(string name);
 		//Удаление необходимого события по id
 		void Del(int id);
 		//Изменение записи о событии
-		void Update(int id, char *name);
+		void Update(int id, string name);
 		void Show();
-	};
+};
 
 //Результаты проверки свершения событий
 class CResult
-	{
+{
 	int idEvent;
 	//Да-событие произошло, нет-не произошло
 	bool result;
@@ -104,24 +103,99 @@ class CResult
 		void Calculate();
 		//Вывод результатов
 		void Show();
-	};
+};
 
 //Список событий
 class CEvent
-	{
-	int id;
-	char *name;
+{
+	int idEvent;
+	string name;
 	public:
 		CEvent();
 		//Добавление события
-		void Add(char *name);
+		void Add(string name);
 		//Удаление необходимого события по id
 		void Del(int id);
 		//Изменение записи о событии
-		void Update(int id, char *name);
+		void Update(int id, string name);
 		//Вывод списка событий
 		void Show();
+};
+
+class CDataBase
+{
+private:
+	string userName;
+	string password;
+	string server;
+	string DBName;
+public:
+	bool isConnected;
+
+public:
+	CDataBase(string server, string DBName, string userName, string password)
+	{
+		this->server = server;
+		this->DBName = DBName;
+		this->userName =userName;
+		this->password = password;
+
+		this->isConnected=false;
+
+		this->Connect();
 	};
+private:
+	void Connect()
+	{
+		string ConnectionString="Provider=SQLNCLI10; Persist Security Info=True";
+		ConnectionString+="; Data Source=" + this->server;
+		ConnectionString+="; Password=" + this->password;
+		ConnectionString+="; User ID=" + this->userName;
+		ConnectionString+="; Initial Catalog=" + this->DBName;
+
+		try 
+		{
+			// ... соединение с БД через компонент
+
+			this->isConnected=true;
+		}
+		catch(...)
+		{
+			ShowError("Ошибка соединения с БД");
+		};
+		
+	};
+private: 
+	void Close()
+	{
+		try
+		{
+			// .....закрытие соединения
+
+			this->isConnected=false;
+		}
+		catch (...)
+		{
+			ShowError("Ошибка закрытия БД");
+		}
+
+	};
+private:
+	void DoQuery(string SQLQuery)
+	{
+		if (this->isConnected)
+		{
+			// ... выполнение запроса 
+		} 
+		else
+		{
+			ShowError("Нет соединения с БД");
+		};
+
+	};
+
+};
+
 
 //Анализ сигнала от контроллера
 void Analiz()
@@ -132,8 +206,9 @@ void Analiz()
 
 int main ()
 	{
+		CDataBase DB("VAS-PC\sqlexpress", "MagistrDB","testuser","1");
 
 	
 	//getch();
-	
+	return 0;
 	}
