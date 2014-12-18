@@ -1,6 +1,5 @@
 #include "stdio.h"
 #include "conio.h"
-#include "time.h"
 #include "string"
 #include "iostream"
 
@@ -64,6 +63,93 @@ class СInputSignal
 	tm CHANGE_DATE;
 };
 
+//Выполнение запроса к БД
+void DoQuery(string queryText)
+{
+	// .... выполнить запрос 
+	cout << queryText << endl;
+};
+
+//Перевод числа в строку
+string IntToStr(int num)
+{
+	char str[10];
+	itoa(num,str,10);
+	return str;
+};
+
+//Список событий
+class CEvent
+{
+	int idEvent;
+	string name;
+	string sourceTable;
+	string queryText;
+public:
+	CEvent()
+	{
+		sourceTable = "Event";
+	};
+
+private:
+	//Возврщает новый id для вставки записи в БД
+	int NewID()
+	{
+		int result;
+		string queryText;
+		queryText="SELECT MAX(idEvent) FROM "+sourceTable;
+		DoQuery(queryText);
+
+		result=25;// для примера
+		return ++result; 
+	};
+
+public:
+	//Добавление события
+	void Add(string name)
+	{
+		string queryText;
+		queryText="INSERT INTO "+sourceTable;
+		queryText.append("(idEvent, name) ");
+		queryText.append("VALUES (");
+		queryText.append(IntToStr(NewID()));
+		queryText.append(",");
+		queryText.append(name);
+		queryText.append(")");
+		DoQuery(queryText);
+	};
+
+	//Удаление необходимого события по id
+	void Del(int id)
+	{
+		string queryText;
+		queryText="DELETE FROM "+sourceTable;
+		queryText.append(" WHERE idEvent = ");
+		queryText.append(IntToStr(id));
+		DoQuery(queryText);
+	};
+
+	//Изменение записи о событии
+	void Update(int id, string newName)
+	{
+		string queryText;
+		queryText="UPDATE "+sourceTable;
+		queryText.append(" SET name = ");
+		queryText.append(newName);
+		queryText.append(" WHERE idEvent = ");
+		queryText.append(IntToStr(id));
+		DoQuery(queryText);
+	};
+
+	//Вывод списка событий
+	void Show()
+	{
+		string queryText;
+		queryText="SELECT * FROM "+sourceTable;
+		DoQuery(queryText);
+	};
+};
+
 //Совершенные события
 class CDoneEvent
 {
@@ -105,22 +191,7 @@ class CResult
 		void Show();
 };
 
-//Список событий
-class CEvent
-{
-	int idEvent;
-	string name;
-	public:
-		CEvent();
-		//Добавление события
-		void Add(string name);
-		//Удаление необходимого события по id
-		void Del(int id);
-		//Изменение записи о событии
-		void Update(int id, string name);
-		//Вывод списка событий
-		void Show();
-};
+
 
 class CDataBase
 {
@@ -140,9 +211,9 @@ public:
 		this->userName =userName;
 		this->password = password;
 
-		this->isConnected=false;
+		isConnected=false;
 
-		this->Connect();
+		Connect();
 	};
 private:
 	void Connect()
@@ -172,7 +243,7 @@ private:
 		{
 			// .....закрытие соединения
 
-			this->isConnected=false;
+			isConnected=false;
 		}
 		catch (...)
 		{
@@ -180,10 +251,10 @@ private:
 		}
 
 	};
-private:
-	void DoQuery(string SQLQuery)
+public:
+	void DoQuery(string queryText)
 	{
-		if (this->isConnected)
+		if (isConnected)
 		{
 			// ... выполнение запроса 
 		} 
@@ -204,11 +275,16 @@ void Analiz()
 
 
 
+
 int main ()
 	{
+		CEvent events;
 		CDataBase DB("VAS-PC\sqlexpress", "MagistrDB","testuser","1");
 
-	
-	//getch();
+		events.Add("name of event");
+		events.Del(15);
+		events.Update(10,"New name of event");
+		events.Show();
+	getch();
 	return 0;
 	}
