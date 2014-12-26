@@ -3,7 +3,9 @@
 #include "classes.h"
 
 using namespace std;
-
+using namespace DB;
+using namespace Input;
+using namespace Input::Event;
 
 //Анализ сигнала от контроллера
 void Analiz()

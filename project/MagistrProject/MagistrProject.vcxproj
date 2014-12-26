@@ -83,7 +83,12 @@
     <ClInclude Include="Classes.h" />
     <ClInclude Include="CommonMethods.h" />
     <ClInclude Include="DataBase.h" />
+    <ClInclude Include="DoneEvent.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="InputSignal.h" />
+    <ClInclude Include="NeedEvent.h" />
+    <ClInclude Include="SelectResults.h" />
+    <ClInclude Include="SignalDescription.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

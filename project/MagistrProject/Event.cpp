@@ -1,5 +1,6 @@
 #include "classes.h"
-
+using namespace Input;
+using namespace Input::Event;
 
 //Список событий
 

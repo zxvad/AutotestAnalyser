@@ -13,33 +13,90 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{4f2395b9-6159-46a1-98f1-11bc675960f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{5c7893aa-fc13-4303-9e00-338f3e3be3e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Output">
+      <UniqueIdentifier>{2294d657-6ce2-48cd-a91a-759410721cf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reading">
+      <UniqueIdentifier>{c0512bd1-b5a8-4d9d-a1a5-56405f33d5b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Analysis">
+      <UniqueIdentifier>{2d8ffbd2-b775-49e6-a131-2df988f386d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Check">
+      <UniqueIdentifier>{d57f433b-54e6-4819-81e7-046b51feb511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Check\CheckSystem">
+      <UniqueIdentifier>{ac122f2c-54c4-4efc-ac48-7b18ae1299b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Output\SelectResult">
+      <UniqueIdentifier>{a0c949ac-9f52-4f38-a293-b23f8f171d43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Output\OutputForm">
+      <UniqueIdentifier>{1fc54097-0f00-45cc-ab49-be077fabaead}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\InputForm">
+      <UniqueIdentifier>{3758258b-ec27-43ed-9c80-3279b9798b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\NeedEvent">
+      <UniqueIdentifier>{df5297cb-3b73-4bce-9fe9-74a0a14bf5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input\Event">
+      <UniqueIdentifier>{a516205f-0b0e-49e3-b6e6-1846af2a5081}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Analysis\DoneEvent">
+      <UniqueIdentifier>{d0518b2e-6f1b-4016-991a-20f54674ef72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Reading\InputSignal">
+      <UniqueIdentifier>{1059cf4a-8f93-43cf-b8c6-3e6899fe023d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="DataBase.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="CommonMethods.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="Event.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Input\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBase.cpp">
+      <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="DataBase.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="CommonMethods.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="InputSignal.h">
+      <Filter>Reading\InputSignal</Filter>
+    </ClInclude>
+    <ClInclude Include="SignalDescription.h">
+      <Filter>Reading</Filter>
+    </ClInclude>
+    <ClInclude Include="DoneEvent.h">
+      <Filter>Analysis\DoneEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="NeedEvent.h">
+      <Filter>Input\NeedEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectResults.h">
+      <Filter>Output\SelectResult</Filter>
+    </ClInclude>
     <ClInclude Include="Event.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Input\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="DataBase.h">
+      <Filter>DB</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,21 +2,24 @@
 using namespace std;
 #include "string"
 
-class CDataBase
+namespace DB
 {
-private:
-	string userName;
-	string password;
-	string server;
-	string DBName;
-public:
-	bool isConnected;
+	class CDataBase
+	{
+	private:
+		string userName;
+		string password;
+		string server;
+		string DBName;
+	public:
+		bool isConnected;
 
-public:
-	CDataBase(string server, string DBName, string userName, string password);
-private:
-	void Connect();
-	void Close();
-public:
-	void DoQuery(string queryText);
-};
+	public:
+		CDataBase(string server, string DBName, string userName, string password);
+	private:
+		void Connect();
+		void Close();
+	public:
+		void DoQuery(string queryText);
+	};
+}
