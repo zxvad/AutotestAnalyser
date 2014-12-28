@@ -80,15 +80,30 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CheckEvent.h" />
+    <ClInclude Include="CheckNeedEvent.h" />
     <ClInclude Include="Classes.h" />
     <ClInclude Include="CommonMethods.h" />
+    <ClInclude Include="ControlPanelInput.h" />
+    <ClInclude Include="ControlPanelOutput.h" />
     <ClInclude Include="DataBase.h" />
+    <ClInclude Include="DBGridEvent.h" />
+    <ClInclude Include="DBGridNeedEvent.h" />
+    <ClInclude Include="DBGridResults.h" />
     <ClInclude Include="DoneEvent.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="EventFinder.h" />
+    <ClInclude Include="EventInput.h" />
+    <ClInclude Include="InputForm.h" />
     <ClInclude Include="InputSignal.h" />
     <ClInclude Include="NeedEvent.h" />
+    <ClInclude Include="NeedEventInput.h" />
+    <ClInclude Include="OutputForm.h" />
+    <ClInclude Include="SelectEvent.h" />
+    <ClInclude Include="SelectNeedEvent.h" />
     <ClInclude Include="SelectResults.h" />
     <ClInclude Include="SignalDescription.h" />
+    <ClInclude Include="SignalReader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

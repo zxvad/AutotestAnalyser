@@ -98,5 +98,50 @@
     <ClInclude Include="DataBase.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="SignalReader.h">
+      <Filter>Reading\InputSignal</Filter>
+    </ClInclude>
+    <ClInclude Include="EventFinder.h">
+      <Filter>Analysis\DoneEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectEvent.h">
+      <Filter>Output\SelectResult</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectNeedEvent.h">
+      <Filter>Output\SelectResult</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputForm.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="DBGridEvent.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="DBGridNeedEvent.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="DBGridResults.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlPanelOutput.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckNeedEvent.h">
+      <Filter>Check\CheckSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckEvent.h">
+      <Filter>Check\CheckSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputForm.h">
+      <Filter>Input\InputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="EventInput.h">
+      <Filter>Input\InputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlPanelInput.h">
+      <Filter>Input\InputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="NeedEventInput.h">
+      <Filter>Input\NeedEvent</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
