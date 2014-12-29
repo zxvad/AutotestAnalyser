@@ -6,11 +6,12 @@
 #include <iostream>
 #include <time.h>
 
-#include "DataBase.h"
+#include "DB/DataBase.h"
 #include "CommonMethods.h"
-#include "Event.h"
+#include "Input/Event/Event.h"
 
 using namespace std;
+using namespace DB;
 
 
 

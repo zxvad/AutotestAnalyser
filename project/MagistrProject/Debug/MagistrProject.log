@@ -1,17 +1,24 @@
-﻿Сборка начата 29.12.2014 0:25:10.
-     1>Проект "C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\MagistrProject\MagistrProject.vcxproj" в узле 2 (целевые объекты build).
+﻿Построение начато 29.12.2014 10:35:02.
+     1>Проект "D:\Вася\Власов\AutotestAnalyser\project\MagistrProject\MagistrProject.vcxproj" в узле 2 (целевые объекты build).
      1>InitializeBuildStatus:
-         Создание "Debug\MagistrProject.unsuccessfulbuild", так как было задано "AlwaysCreate".
+         Обращение к "Debug\MagistrProject.unsuccessfulbuild".
        ClCompile:
-         Для всех выходных данных обновления не требуется.
+         D:\Вася\студия 2010\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Input\Event\Event.cpp
+         Event.cpp
        Link:
-         Для всех выходных данных обновления не требуется.
-         MagistrProject.vcxproj -> C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\MagistrProject\Debug\MagistrProject.exe
+         D:\Вася\студия 2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Вася\Власов\AutotestAnalyser\project\MagistrProject\Debug\MagistrProject.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\MagistrProject.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Вася\Власов\AutotestAnalyser\project\MagistrProject\Debug\MagistrProject.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Вася\Власов\AutotestAnalyser\project\MagistrProject\Debug\MagistrProject.lib" /MACHINE:X86 Debug\CommonMethods.obj
+         Debug\DataBase.obj
+         Debug\Event.obj
+         Debug\main.obj
+     1>CommonMethods.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/INCREMENTAL:NO"
+         MagistrProject.vcxproj -> D:\Вася\Власов\AutotestAnalyser\project\MagistrProject\Debug\MagistrProject.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"D:\Вася\Власов\AutotestAnalyser\project\MagistrProject\Debug\MagistrProject.exe;#1" /manifest Debug\MagistrProject.exe.intermediate.manifest
        FinalizeBuildStatus:
          Файл "Debug\MagistrProject.unsuccessfulbuild" удаляется.
          Обращение к "Debug\MagistrProject.lastbuildstate".
-     1>Построение проекта "C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\MagistrProject\MagistrProject.vcxproj" завершено (целевые объекты build).
+     1>Построение проекта "D:\Вася\Власов\AutotestAnalyser\project\MagistrProject\MagistrProject.vcxproj" завершено (целевые объекты build).
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:00.17
+Затраченное время: 00:00:01.94

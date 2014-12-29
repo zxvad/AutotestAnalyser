@@ -25,9 +25,6 @@
     <Filter Include="Reading">
       <UniqueIdentifier>{c0512bd1-b5a8-4d9d-a1a5-56405f33d5b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Analysis">
-      <UniqueIdentifier>{2d8ffbd2-b775-49e6-a131-2df988f386d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Check">
       <UniqueIdentifier>{d57f433b-54e6-4819-81e7-046b51feb511}</UniqueIdentifier>
     </Filter>
@@ -49,11 +46,14 @@
     <Filter Include="Input\Event">
       <UniqueIdentifier>{a516205f-0b0e-49e3-b6e6-1846af2a5081}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Analysis\DoneEvent">
-      <UniqueIdentifier>{d0518b2e-6f1b-4016-991a-20f54674ef72}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Reading\InputSignal">
       <UniqueIdentifier>{1059cf4a-8f93-43cf-b8c6-3e6899fe023d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Analysis">
+      <UniqueIdentifier>{ea9d9b78-a36e-4087-ade6-269ad4f3ccf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Analysis\DoneEvent">
+      <UniqueIdentifier>{3d4bf21e-644b-4f59-9736-a13bd4ba3bdd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,11 +63,11 @@
     <ClCompile Include="CommonMethods.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Event.cpp">
-      <Filter>Input\Event</Filter>
-    </ClCompile>
-    <ClCompile Include="DataBase.cpp">
+    <ClCompile Include="DB\DataBase.cpp">
       <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Event\Event.cpp">
+      <Filter>Input\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,71 +77,71 @@
     <ClInclude Include="CommonMethods.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="InputSignal.h">
-      <Filter>Reading\InputSignal</Filter>
-    </ClInclude>
-    <ClInclude Include="SignalDescription.h">
-      <Filter>Reading</Filter>
-    </ClInclude>
-    <ClInclude Include="DoneEvent.h">
+    <ClInclude Include="Analysis\DoneEvent\DoneEvent.h">
       <Filter>Analysis\DoneEvent</Filter>
     </ClInclude>
-    <ClInclude Include="NeedEvent.h">
-      <Filter>Input\NeedEvent</Filter>
+    <ClInclude Include="Analysis\DoneEvent\EventFinder.h">
+      <Filter>Analysis\DoneEvent</Filter>
     </ClInclude>
-    <ClInclude Include="SelectResults.h">
-      <Filter>Output\SelectResult</Filter>
+    <ClInclude Include="Check\CheckSystem\CheckEvent.h">
+      <Filter>Check\CheckSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Event.h">
-      <Filter>Input\Event</Filter>
+    <ClInclude Include="Check\CheckSystem\CheckNeedEvent.h">
+      <Filter>Check\CheckSystem</Filter>
     </ClInclude>
-    <ClInclude Include="DataBase.h">
+    <ClInclude Include="DB\DataBase.h">
       <Filter>DB</Filter>
     </ClInclude>
-    <ClInclude Include="SignalReader.h">
+    <ClInclude Include="Input\Event\Event.h">
+      <Filter>Input\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputForm\ControlPanelInput.h">
+      <Filter>Input\InputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputForm\EventInput.h">
+      <Filter>Input\InputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputForm\InputForm.h">
+      <Filter>Input\InputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\NeedEvent\NeedEvent.h">
+      <Filter>Input\NeedEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\NeedEvent\NeedEventInput.h">
+      <Filter>Input\NeedEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\OutputForm\ControlPanelOutput.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\OutputForm\DBGridEvent.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\OutputForm\DBGridNeedEvent.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\OutputForm\DBGridResults.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\OutputForm\OutputForm.h">
+      <Filter>Output\OutputForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\SelectResult\SelectEvent.h">
+      <Filter>Output\SelectResult</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\SelectResult\SelectNeedEvent.h">
+      <Filter>Output\SelectResult</Filter>
+    </ClInclude>
+    <ClInclude Include="Output\SelectResult\SelectResults.h">
+      <Filter>Output\SelectResult</Filter>
+    </ClInclude>
+    <ClInclude Include="Reading\InputSignal\InputSignal.h">
       <Filter>Reading\InputSignal</Filter>
     </ClInclude>
-    <ClInclude Include="EventFinder.h">
-      <Filter>Analysis\DoneEvent</Filter>
+    <ClInclude Include="Reading\InputSignal\SignalReader.h">
+      <Filter>Reading\InputSignal</Filter>
     </ClInclude>
-    <ClInclude Include="SelectEvent.h">
-      <Filter>Output\SelectResult</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectNeedEvent.h">
-      <Filter>Output\SelectResult</Filter>
-    </ClInclude>
-    <ClInclude Include="OutputForm.h">
-      <Filter>Output\OutputForm</Filter>
-    </ClInclude>
-    <ClInclude Include="DBGridEvent.h">
-      <Filter>Output\OutputForm</Filter>
-    </ClInclude>
-    <ClInclude Include="DBGridNeedEvent.h">
-      <Filter>Output\OutputForm</Filter>
-    </ClInclude>
-    <ClInclude Include="DBGridResults.h">
-      <Filter>Output\OutputForm</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlPanelOutput.h">
-      <Filter>Output\OutputForm</Filter>
-    </ClInclude>
-    <ClInclude Include="CheckNeedEvent.h">
-      <Filter>Check\CheckSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="CheckEvent.h">
-      <Filter>Check\CheckSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="InputForm.h">
-      <Filter>Input\InputForm</Filter>
-    </ClInclude>
-    <ClInclude Include="EventInput.h">
-      <Filter>Input\InputForm</Filter>
-    </ClInclude>
-    <ClInclude Include="ControlPanelInput.h">
-      <Filter>Input\InputForm</Filter>
-    </ClInclude>
-    <ClInclude Include="NeedEventInput.h">
-      <Filter>Input\NeedEvent</Filter>
+    <ClInclude Include="Reading\SignalDescription.h">
+      <Filter>Reading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

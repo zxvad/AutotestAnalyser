@@ -75,35 +75,35 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CommonMethods.cpp" />
-    <ClCompile Include="DataBase.cpp" />
-    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="DB\DataBase.cpp" />
+    <ClCompile Include="Input\Event\Event.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CheckEvent.h" />
-    <ClInclude Include="CheckNeedEvent.h" />
+    <ClInclude Include="Analysis\DoneEvent\DoneEvent.h" />
+    <ClInclude Include="Analysis\DoneEvent\EventFinder.h" />
+    <ClInclude Include="Check\CheckSystem\CheckEvent.h" />
+    <ClInclude Include="Check\CheckSystem\CheckNeedEvent.h" />
     <ClInclude Include="Classes.h" />
     <ClInclude Include="CommonMethods.h" />
-    <ClInclude Include="ControlPanelInput.h" />
-    <ClInclude Include="ControlPanelOutput.h" />
-    <ClInclude Include="DataBase.h" />
-    <ClInclude Include="DBGridEvent.h" />
-    <ClInclude Include="DBGridNeedEvent.h" />
-    <ClInclude Include="DBGridResults.h" />
-    <ClInclude Include="DoneEvent.h" />
-    <ClInclude Include="Event.h" />
-    <ClInclude Include="EventFinder.h" />
-    <ClInclude Include="EventInput.h" />
-    <ClInclude Include="InputForm.h" />
-    <ClInclude Include="InputSignal.h" />
-    <ClInclude Include="NeedEvent.h" />
-    <ClInclude Include="NeedEventInput.h" />
-    <ClInclude Include="OutputForm.h" />
-    <ClInclude Include="SelectEvent.h" />
-    <ClInclude Include="SelectNeedEvent.h" />
-    <ClInclude Include="SelectResults.h" />
-    <ClInclude Include="SignalDescription.h" />
-    <ClInclude Include="SignalReader.h" />
+    <ClInclude Include="DB\DataBase.h" />
+    <ClInclude Include="Input\Event\Event.h" />
+    <ClInclude Include="Input\InputForm\ControlPanelInput.h" />
+    <ClInclude Include="Input\InputForm\EventInput.h" />
+    <ClInclude Include="Input\InputForm\InputForm.h" />
+    <ClInclude Include="Input\NeedEvent\NeedEvent.h" />
+    <ClInclude Include="Input\NeedEvent\NeedEventInput.h" />
+    <ClInclude Include="Output\OutputForm\ControlPanelOutput.h" />
+    <ClInclude Include="Output\OutputForm\DBGridEvent.h" />
+    <ClInclude Include="Output\OutputForm\DBGridNeedEvent.h" />
+    <ClInclude Include="Output\OutputForm\DBGridResults.h" />
+    <ClInclude Include="Output\OutputForm\OutputForm.h" />
+    <ClInclude Include="Output\SelectResult\SelectEvent.h" />
+    <ClInclude Include="Output\SelectResult\SelectNeedEvent.h" />
+    <ClInclude Include="Output\SelectResult\SelectResults.h" />
+    <ClInclude Include="Reading\InputSignal\InputSignal.h" />
+    <ClInclude Include="Reading\InputSignal\SignalReader.h" />
+    <ClInclude Include="Reading\SignalDescription.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
