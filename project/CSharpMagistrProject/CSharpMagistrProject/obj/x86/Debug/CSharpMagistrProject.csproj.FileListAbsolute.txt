@@ -1,0 +1,15 @@
+C:\Users\012278\Documents\Visual Studio 2010\Projects\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.exe
+C:\Users\012278\Documents\Visual Studio 2010\Projects\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.pdb
+C:\Users\012278\Documents\Visual Studio 2010\Projects\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\012278\Documents\Visual Studio 2010\Projects\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Properties.Resources.resources
+C:\Users\012278\Documents\Visual Studio 2010\Projects\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\012278\Documents\Visual Studio 2010\Projects\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\012278\Documents\Visual Studio 2010\Projects\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.exe
+C:\Users\012278\Documents\Visual Studio 2010\Projects\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.pdb
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.exe
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.pdb
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.exe
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.pdb
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.MainForm.resources
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Properties.Resources.resources
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.csproj.GenerateResource.Cache
