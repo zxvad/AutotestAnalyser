@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CSharpMagistrProject.DB;
 
 namespace CSharpMagistrProject
 {
@@ -14,6 +15,11 @@ namespace CSharpMagistrProject
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            DataBase db=new DataBase("","","Admin","");
         }
     }
 }

@@ -37,11 +37,13 @@
             this.ClientSize = new System.Drawing.Size(471, 395);
             this.Name = "MainForm";
             this.Text = "Анализ ПО контроллера АСУТП";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
     }
 }
 

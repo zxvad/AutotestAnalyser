@@ -26,7 +26,7 @@ namespace CSharpMagistrProject.Input.Event
             int result;
 		    string queryText;
 		    queryText="SELECT MAX(idEvent) FROM "+sourceTable;
-            DataBase.DoQuery(queryText);
+            //DataBase.DoQuery(queryText);
 
 		    result=25;// для примера
 		    return ++result; 
@@ -43,7 +43,7 @@ namespace CSharpMagistrProject.Input.Event
             queryText += ",";
             queryText += name;
             queryText += ")";
-            DataBase.DoQuery(queryText);
+            //DataBase.DoQuery(queryText);
         }
 
 		//Удаление необходимого события по id
@@ -53,7 +53,7 @@ namespace CSharpMagistrProject.Input.Event
             queryText = "DELETE FROM " + sourceTable;
             queryText += " WHERE idEvent = ";
             queryText += id.ToString();
-            DataBase.DoQuery(queryText);
+            //DataBase.DoQuery(queryText);
         }
 
 		//Изменение записи о событии
@@ -65,7 +65,7 @@ namespace CSharpMagistrProject.Input.Event
             queryText += newName;
             queryText += " WHERE idEvent = ";
             queryText += id.ToString();
-            DataBase.DoQuery(queryText);
+            //DataBase.DoQuery(queryText);
         }
 
 		//Вывод списка событий
@@ -73,7 +73,7 @@ namespace CSharpMagistrProject.Input.Event
         {
             string queryText;
             queryText = "SELECT * FROM " + sourceTable;
-            DataBase.DoQuery(queryText);
+            //DataBase.DoQuery(queryText);
         }
     }
 }
