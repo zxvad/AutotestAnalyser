@@ -33,6 +33,7 @@ namespace CSharpMagistrProject.DB
         
 	    private void Connect()
 	    {
+			//FIXME: не оставлять кучу закометареных строк избавляйся от них
             //string сonnectionString = "";
             //сonnectionString = "Provider=SQLNCLI10; Persist Security Info=True";
             //сonnectionString+="; Data Source=" + this.server;
@@ -85,6 +86,8 @@ namespace CSharpMagistrProject.DB
 
 	    public void DoNoSelectQuery(string queryText)
 	    {
+		//try catch не располагать вдали от пользователя в глубинах классов, использовать только в GUI элементах
+		//try catch в математических классах проекта по возможности заменять на "сторожевые условия"
 	        try
 	        {
 	            if (isConnected)
