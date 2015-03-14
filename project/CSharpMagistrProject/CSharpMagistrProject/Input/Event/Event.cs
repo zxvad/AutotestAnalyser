@@ -1,35 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using CSharpMagistrProject.DB;
+﻿using CSharpMagistrProject.DB;
 
 namespace CSharpMagistrProject.Input.Event
 {
     //Список событий
     class Event
     {
-        int idEvent;
-		string name;
-		string sourceTable;
-		string queryText;
+        private int idEvent;
+        private string name;
+        private string sourceTable;
+        private string queryText;
 
-        public Event()
+        private DataBase dataBase;
+
+        public Event(DataBase sourceDataBase, string sourceTable)
         {
-            sourceTable = "Event";
+            dataBase = sourceDataBase;
+            dataBase.Connect();
+            this.sourceTable = sourceTable;
         }
 
 		//Возврщает новый id для вставки записи в БД
         public int NewID()
         {
-            int result;
-		    string queryText;
-		    queryText="SELECT MAX(idEvent) FROM "+sourceTable;
-            //DataBase.DoQuery(queryText);
+            if (dataBase.isConnected==true)
+            {
+                queryText = "SELECT MAX(idEvent) FROM " + sourceTable;
+                int result = dataBase.DoScalarQuery(queryText);
+                return ++result; 
+            }
+            else
+            {
+                return -1;
+            }
 
-		    result=25;// для примера
-		    return ++result; 
         }
 
 		//Добавление события

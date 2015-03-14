@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CSharpMagistrProject.DB;
+using CSharpMagistrProject.Input.Event;
 
 namespace CSharpMagistrProject
 {
@@ -20,11 +21,15 @@ namespace CSharpMagistrProject
         private void MainForm_Load(object sender, EventArgs e)
         {
             DataBase db=new DataBase("","","Admin","");
+            
+            
             //string testSQL = "INSERT INTO EventTable(idEvent,name) VALUES(30,'namename')";
             string testSQL = "SELECT * FROM EventTable";
            
             try
             {
+                Event events = new Event(db, "EventTable");
+                MessageBox.Show(events.NewID().ToString());
                 db.Connect();
                 db.DoQuery(testSQL,resultQueryGridView);
                 db.Close();

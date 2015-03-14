@@ -16,7 +16,6 @@ namespace CSharpMagistrProject.DB
         private string DBName;
 
 	    private OleDbConnection connection;
-	    private OleDbCommand command;
 
 	    private bool IsConnected;
         public bool isConnected
@@ -72,7 +71,7 @@ namespace CSharpMagistrProject.DB
                     queryText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > -1 &&
                     queryText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > -1)
                 {
-                    command = new OleDbCommand(queryText, connection);
+                    OleDbCommand command = new OleDbCommand(queryText, connection);
                     // выполнение запроса 
                     int kolRecords = command.ExecuteNonQuery();
                     CommonMethods.ShowMsg("Обновлено" + kolRecords.ToString() + " записей");
@@ -110,6 +109,32 @@ namespace CSharpMagistrProject.DB
             else
             {
                 CommonMethods.ShowMsg("Нет соединения с БД");
+            }
+	    }
+
+        // Выполнение скалярного SQL запроса
+	    public int DoScalarQuery(string scalarQuery)
+	    {
+            if (IsConnected)
+            {
+                // Если в запросе есть SELECT
+                if (scalarQuery.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
+                {
+                    OleDbCommand command = new OleDbCommand(scalarQuery, connection);
+                    var resultQuery = command.ExecuteScalar();
+                    
+                    return Convert.ToInt32(resultQuery);
+                }
+                else
+                {
+                    CommonMethods.ShowMsg("Неверный запрос");
+                    return -1;
+                }
+            }
+            else
+            {
+                CommonMethods.ShowMsg("Нет соединения с БД");
+                return -1;
             }
 	    }
 	}

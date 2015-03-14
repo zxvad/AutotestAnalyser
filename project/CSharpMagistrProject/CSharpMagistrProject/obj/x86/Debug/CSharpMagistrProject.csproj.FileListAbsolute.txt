@@ -24,3 +24,4 @@ D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMag
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\GenerateResource.write.1.tlog
 F:\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.exe
 F:\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.pdb
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.csprojResolveAssemblyReference.cache
