@@ -18,7 +18,12 @@ namespace CSharpMagistrProject.DB
 	    private OleDbConnection connection;
 	    private OleDbCommand command;
 
-        public bool isConnected;
+	    private bool IsConnected;
+        public bool isConnected
+	    {
+	        get { return IsConnected; }
+	    }
+
 
 	    public DataBase(string server, string DBName, string userName, string password)
 	    {
@@ -27,90 +32,85 @@ namespace CSharpMagistrProject.DB
             this.userName = userName;
             this.password = password;
 
-            isConnected = false;
-            Connect();
+            IsConnected = false;
 	    }
         
-	    private void Connect()
+        //Соединение с БД
+	    public void Connect()
 	    {
-			//FIXME: не оставлять кучу закометареных строк избавляйся от них
-            //string сonnectionString = "";
-            //сonnectionString = "Provider=SQLNCLI10; Persist Security Info=True";
-            //сonnectionString+="; Data Source=" + this.server;
-            //сonnectionString+="; Password=" + this.password;
-            //сonnectionString+="; User ID=" + this.userName;
-            //сonnectionString+="; Initial Catalog=" + this.DBName;
+	        string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;";
+	        connectionString += "Data Source=|DataDirectory|\\MagistrDB.accdb";
 
-            //string connectionString = "";
-            //connectionString = "Provider=Microsoft.Jet.OLEDB.4.0";
-            //connectionString += "; Data Source=" + Path.GetDirectoryName(Application.ExecutablePath) + "\\" +
-            //                    "MagistrDB.accdb";
-            //connectionString += "; Password="+@""""+password+@"""";
-            //connectionString += "; User ID=" + @"""" + userName + @""";";
-	        string connectionString =
-                @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Вася\Documents\Visual Studio 2010\Projects\WinFormsMagistrProject\MagistrDB.accdb;  User ID=Admin";
-
-	        try
+	        if (IsConnected == false)
 	        {
-	            // открываем соединение
-	            connection = new OleDbConnection(connectionString);
-	            connection.Open();
-	            isConnected = true;
-
-	            MessageBox.Show("DB Opened");
-
+                // открываем соединение
+                connection = new OleDbConnection(connectionString);
+                connection.Open();
+                IsConnected = true;
 	        }
-	        catch (Exception exception)
-	        {
-	            CommonMethods.ShowError(exception.Message);
-                connection.Close();
-	        }   
-	    }
+            
+        }
 
+        //Закрытие соединения с БД
 	    public void Close()
 	    {
-	        try
-		    {
-			    //закрытие соединения
-		        if (isConnected)
-		        {
-		            connection.Close();
-		        }
-                isConnected = false;
-		    }
-            catch (Exception exception)
-		    {
-                CommonMethods.ShowError(exception.Message);
-		    }
+            //закрытие соединения
+            if (IsConnected)
+            {
+                connection.Close();
+                IsConnected = false;
+            }
 	    }
 
-	    public void DoNoSelectQuery(string queryText)
+        //выполнение SQL запроса (INSERT, UPDATE, DELETE)
+	    public void DoQuery(string queryText)
 	    {
-		//try catch не располагать вдали от пользователя в глубинах классов, использовать только в GUI элементах
-		//try catch в математических классах проекта по возможности заменять на "сторожевые условия"
-	        try
+            if (IsConnected)
+            {
+                //Если в запросе есть insert/update/delete
+                if (queryText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > -1 &&
+                    queryText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > -1 &&
+                    queryText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > -1)
+                {
+                    command = new OleDbCommand(queryText, connection);
+                    // выполнение запроса 
+                    int kolRecords = command.ExecuteNonQuery();
+                    CommonMethods.ShowMsg("Обновлено" + kolRecords.ToString() + " записей");
+                }
+                else
+                {
+                    CommonMethods.ShowMsg("Неверный запрос");
+                }
+            }
+            else
+            {
+                CommonMethods.ShowMsg("Нет соединения с БД");
+            }
+	    }
+
+        //выполнение SQL запроса (SELECT) и занесение результатов в DataGridView
+	    public void DoQuery(string selectQueryText, DataGridView receiverGridView)
+	    {
+	        if (IsConnected)
 	        {
-	            if (isConnected)
+                // Если в запросе есть SELECT
+                if (selectQueryText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
 	            {
-	                // ... выполнение запроса 
-                    command=new OleDbCommand(queryText,connection);
-	                command.ExecuteNonQuery();
-	            }
+                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(selectQueryText, connection);
+                    DataTable resultQueryTable = new DataTable();
+                    dataAdapter.Fill(resultQueryTable);
+                    receiverGridView.DataSource = resultQueryTable;
+                }
 	            else
 	            {
-	                CommonMethods.ShowError("Нет соединения с БД");
+                    CommonMethods.ShowMsg("Неверный SELECT запрос");
 	            }
+                
 	        }
-	        catch (Exception exception)
-	        {
-                CommonMethods.ShowError(exception.Message);
-	        }
-
+            else
+            {
+                CommonMethods.ShowMsg("Нет соединения с БД");
+            }
 	    }
-
-	    public void DoQuery(string quertText)
-	    {
-	        
-	    }
-	};
+	}
 }

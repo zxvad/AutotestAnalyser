@@ -20,6 +20,21 @@ namespace CSharpMagistrProject
         private void MainForm_Load(object sender, EventArgs e)
         {
             DataBase db=new DataBase("","","Admin","");
+            //string testSQL = "INSERT INTO EventTable(idEvent,name) VALUES(30,'namename')";
+            string testSQL = "SELECT * FROM EventTable";
+           
+            try
+            {
+                db.Connect();
+                db.DoQuery(testSQL,resultQueryGridView);
+                db.Close();
+            }
+            catch (Exception exception)
+            {
+                CommonMethods.ShowMsg(exception.Message);
+            }
+
+
         }
     }
 }

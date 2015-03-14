@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Windows.Forms;
 
 
 namespace CSharpMagistrProject
 {
     static class CommonMethods
     {
-        public static void ShowError(string error)
+        public static void ShowMsg(string message)
         {
-            Console.WriteLine(error);
-            // дописать запись лог файла
-            // .....
+            MessageBox.Show(message);
+            // ... добавить лог
         }
     }
 }
