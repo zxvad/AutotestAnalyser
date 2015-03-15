@@ -63,18 +63,17 @@ namespace CSharpMagistrProject.DB
 
         //выполнение SQL запроса (INSERT, UPDATE, DELETE)
 	    public void DoQuery(string queryText)
-	    {
+	    { 
             if (IsConnected)
             {
                 //Если в запросе есть insert/update/delete
-                if (queryText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > -1 &&
-                    queryText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > -1 &&
+                if (queryText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > -1 ||
+                    queryText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > -1 ||
                     queryText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > -1)
                 {
-                    OleDbCommand command = new OleDbCommand(queryText, connection);
                     // выполнение запроса 
-                    int kolRecords = command.ExecuteNonQuery();
-                    CommonMethods.ShowMsg("Обновлено" + kolRecords.ToString() + " записей");
+                    OleDbCommand command = new OleDbCommand(queryText, connection);
+                    command.ExecuteNonQuery();
                 }
                 else
                 {
@@ -90,7 +89,7 @@ namespace CSharpMagistrProject.DB
         //выполнение SQL запроса (SELECT) и занесение результатов в DataGridView
 	    public void DoQuery(string selectQueryText, DataGridView receiverGridView)
 	    {
-	        if (IsConnected)
+            if (IsConnected)
 	        {
                 // Если в запросе есть SELECT
                 if (selectQueryText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
@@ -122,7 +121,6 @@ namespace CSharpMagistrProject.DB
                 {
                     OleDbCommand command = new OleDbCommand(scalarQuery, connection);
                     var resultQuery = command.ExecuteScalar();
-                    
                     return Convert.ToInt32(resultQuery);
                 }
                 else

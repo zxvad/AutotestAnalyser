@@ -1,15 +1,12 @@
-﻿using CSharpMagistrProject.DB;
+﻿using System.Windows.Forms;
+using CSharpMagistrProject.DB;
 
 namespace CSharpMagistrProject.Input.Event
 {
     //Список событий
     class Event
     {
-        private int idEvent;
-        private string name;
         private string sourceTable;
-        private string queryText;
-
         private DataBase dataBase;
 
         public Event(DataBase sourceDataBase, string sourceTable)
@@ -20,43 +17,37 @@ namespace CSharpMagistrProject.Input.Event
         }
 
 		//Возврщает новый id для вставки записи в БД
-        public int NewID()
+        private int NewID()
         {
             if (dataBase.isConnected==true)
             {
+                string queryText;
                 queryText = "SELECT MAX(idEvent) FROM " + sourceTable;
                 int result = dataBase.DoScalarQuery(queryText);
-                return ++result; 
+                if (result!=-1)
+                {
+                    return ++result; 
+                }
             }
-            else
-            {
-                return -1;
-            }
-
+            return -1;
         }
 
 		//Добавление события
-        public void Add(string name)
+        public void Add(string nameEvent)
         {
             string queryText;
-            queryText = "INSERT INTO " + sourceTable;
-            queryText += "(idEvent, name) ";
-            queryText +="VALUES (";
-            queryText += NewID().ToString();
-            queryText += ",";
-            queryText += name;
-            queryText += ")";
-            //DataBase.DoQuery(queryText);
+            queryText = "INSERT INTO " + sourceTable + "(idEvent, name) ";
+            queryText += "VALUES (" + NewID().ToString() + "," +@"""" +nameEvent + @""")";
+            dataBase.DoQuery(queryText);
         }
 
-		//Удаление необходимого события по id
+        //Удаление необходимого события по id
         public void Del(int id)
         {
             string queryText;
             queryText = "DELETE FROM " + sourceTable;
-            queryText += " WHERE idEvent = ";
-            queryText += id.ToString();
-            //DataBase.DoQuery(queryText);
+            queryText += " WHERE idEvent = "+ id.ToString();
+            dataBase.DoQuery(queryText);
         }
 
 		//Изменение записи о событии
@@ -64,19 +55,17 @@ namespace CSharpMagistrProject.Input.Event
         {
             string queryText;
             queryText = "UPDATE " + sourceTable;
-            queryText += " SET name = ";
-            queryText += newName;
-            queryText += " WHERE idEvent = ";
-            queryText += id.ToString();
-            //DataBase.DoQuery(queryText);
+            queryText += @" SET name = """ + newName+ @"""";
+            queryText += " WHERE idEvent = " + id.ToString();
+            dataBase.DoQuery(queryText);
         }
 
 		//Вывод списка событий
-        public void Show()
+        public void Show(DataGridView receiverGridView)
         {
             string queryText;
             queryText = "SELECT * FROM " + sourceTable;
-            //DataBase.DoQuery(queryText);
+            dataBase.DoQuery(queryText,receiverGridView);
         }
     }
 }
