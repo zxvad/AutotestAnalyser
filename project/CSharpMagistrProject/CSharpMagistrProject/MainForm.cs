@@ -18,6 +18,7 @@ namespace CSharpMagistrProject
             InitializeComponent();
         }
 
+		//убрать всю математику в отдельный класс. Использовать паттерн MVC
         private void MainForm_Load(object sender, EventArgs e)
         {
             DataBase db=new DataBase("","","Admin","");
@@ -38,7 +39,7 @@ namespace CSharpMagistrProject
 
 
         }
-
+		//убрать всю математику в отдельный класс. Использовать паттерн MVC
         private void addButton_Click(object sender, EventArgs e)
         {
             DataBase db = new DataBase("", "", "Admin", "");
@@ -57,6 +58,7 @@ namespace CSharpMagistrProject
             }
         }
 
+		//убрать всю математику в отдельный класс. Использовать паттерн MVC
         private void delButton_Click(object sender, EventArgs e)
         {
             DataBase db = new DataBase("", "", "Admin", "");
@@ -76,6 +78,7 @@ namespace CSharpMagistrProject
         }
 
         
+		//убрать всю математику в отдельный класс. Использовать паттерн MVC
         private void updateButton_Click(object sender, EventArgs e)
         {
             DataBase db = new DataBase("", "", "Admin", "");
@@ -96,7 +99,9 @@ namespace CSharpMagistrProject
         }
 
         //puts only numbers and backspace in textbox
-        private void textBoxID_KeyPress(object sender, KeyPressEventArgs e)
+        //не использовать "магические числа"
+		//либо константа с адекватным названием, либо что еще лучше ENUM
+		private void textBoxID_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
             if (char.IsDigit(ch) == false && ch!=8)
