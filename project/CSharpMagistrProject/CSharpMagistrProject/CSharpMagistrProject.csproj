@@ -52,12 +52,12 @@
     <Compile Include="Check\CheckSystem\CheckNeedEvent.cs" />
     <Compile Include="CommonMethods.cs" />
     <Compile Include="DB\DataBase.cs" />
-    <Compile Include="Input\Event\Event.cs" />
-    <Compile Include="Input\InputForm\ControlPanelInput.cs" />
-    <Compile Include="Input\InputForm\EventInput.cs" />
-    <Compile Include="Input\InputForm\InputForm.cs" />
-    <Compile Include="Input\NeedEvent\NeedEvent.cs" />
-    <Compile Include="Input\NeedEvent\NeedEventInput.cs" />
+    <Compile Include="Input\Events\Event.cs" />
+    <Compile Include="Input\InputForms\ControlPanelInput.cs" />
+    <Compile Include="Input\InputForms\EventInput.cs" />
+    <Compile Include="Input\InputForms\InputForm.cs" />
+    <Compile Include="Input\NeedEvents\NeedEvent.cs" />
+    <Compile Include="Input\InputForms\NeedEventInput.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CSharpMagistrProject.DB;
-using CSharpMagistrProject.Input.Event;
+using CSharpMagistrProject.Input.Events;
 
 namespace CSharpMagistrProject
 {
+
     public partial class MainForm : Form
     {
+        const int ESCAPE = 8;
         public MainForm()
         {
             InitializeComponent();
@@ -99,12 +101,10 @@ namespace CSharpMagistrProject
         }
 
         //puts only numbers and backspace in textbox
-        //не использовать "магические числа"
-		//либо константа с адекватным названием, либо что еще лучше ENUM
 		private void textBoxID_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (char.IsDigit(ch) == false && ch!=8)
+            if (char.IsDigit(ch) == false && ch!=ESCAPE)
             {
                 e.Handled = true;
             }

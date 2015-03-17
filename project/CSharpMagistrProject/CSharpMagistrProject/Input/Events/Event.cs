@@ -1,23 +1,23 @@
 ﻿using System.Windows.Forms;
 using CSharpMagistrProject.DB;
 
-namespace CSharpMagistrProject.Input.Event
+namespace CSharpMagistrProject.Input.Events
 {
     //Список событий
     class Event
     {
-        private string sourceTable;
-        private DataBase dataBase;
+        protected string sourceEventTable;
+        protected DataBase dataBase;
 
-        public Event(DataBase sourceDataBase, string sourceTable)
+        public Event(DataBase sourceDataBase, string sourceEventTable)
         {
             dataBase = sourceDataBase;
             dataBase.Connect();
-            this.sourceTable = sourceTable;
+            this.sourceEventTable = sourceEventTable;
         }
 
 		//Возврщает новый id для вставки записи в БД
-        private int NewID()
+        protected int NewID(string sourceTable)
         {
             if (dataBase.isConnected==true)
             {
@@ -33,38 +33,38 @@ namespace CSharpMagistrProject.Input.Event
         }
 
 		//Добавление события
-        public void Add(string nameEvent)
+        public virtual void Add(string nameEvent)
         {
             string queryText;
-            queryText = "INSERT INTO " + sourceTable + "(idEvent, name) ";
-            queryText += "VALUES (" + NewID().ToString() + "," +@"""" +nameEvent + @""")";
+            queryText = "INSERT INTO " + sourceEventTable + "(idEvent, name) ";
+            queryText += "VALUES (" + NewID(sourceEventTable) + "," + @"""" + nameEvent + @""")";
             dataBase.DoQuery(queryText);
         }
 
         //Удаление необходимого события по id
-        public void Del(int id)
+        public virtual void Del(int id)
         {
             string queryText;
-            queryText = "DELETE FROM " + sourceTable;
+            queryText = "DELETE FROM " + sourceEventTable;
             queryText += " WHERE idEvent = "+ id.ToString();
             dataBase.DoQuery(queryText);
         }
 
 		//Изменение записи о событии
-        public void Update(int id, string newName)
+        public virtual void Update(int id, string newName)
         {
             string queryText;
-            queryText = "UPDATE " + sourceTable;
+            queryText = "UPDATE " + sourceEventTable;
             queryText += @" SET name = """ + newName+ @"""";
             queryText += " WHERE idEvent = " + id.ToString();
             dataBase.DoQuery(queryText);
         }
 
 		//Вывод списка событий
-        public void Show(DataGridView receiverGridView)
+        public virtual  void Show(DataGridView receiverGridView)
         {
             string queryText;
-            queryText = "SELECT * FROM " + sourceTable;
+            queryText = "SELECT * FROM " + sourceEventTable;
             dataBase.DoQuery(queryText,receiverGridView);
         }
     }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CSharpMagistrProject.Input.InputForm
+﻿namespace CSharpMagistrProject.Input.InputForms
 {
     class InputForm
     {
