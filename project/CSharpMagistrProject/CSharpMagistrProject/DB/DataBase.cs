@@ -4,17 +4,13 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
+using CSharpMagistrProject.MVC;
 
 
 namespace CSharpMagistrProject.DB
 {
-	class DataBase
+    public class DataBase
 	{
-	    private string userName;
-        private string password;
-        private string server;
-        private string DBName;
-
 	    private OleDbConnection connection;
 
 	    private bool IsConnected;
@@ -24,13 +20,8 @@ namespace CSharpMagistrProject.DB
 	    }
 
 
-	    public DataBase(string server, string DBName, string userName, string password)
+	    public DataBase()
 	    {
-            this.server = server;
-            this.DBName = DBName;
-            this.userName = userName;
-            this.password = password;
-
             IsConnected = false;
 	    }
         
@@ -77,17 +68,17 @@ namespace CSharpMagistrProject.DB
                 }
                 else
                 {
-                    CommonMethods.ShowMsg("Неверный запрос");
+                    Controller.ShowMsg("Неверный запрос");
                 }
             }
             else
             {
-                CommonMethods.ShowMsg("Нет соединения с БД");
+                Controller.ShowMsg("Нет соединения с БД");
             }
 	    }
 
         //выполнение SQL запроса (SELECT) и занесение результатов в DataGridView
-	    public void DoQuery(string selectQueryText, DataGridView receiverGridView)
+	    public DataTable DoSelectQuery(string selectQueryText)
 	    {
             if (IsConnected)
 	        {
@@ -97,41 +88,43 @@ namespace CSharpMagistrProject.DB
                     OleDbDataAdapter dataAdapter = new OleDbDataAdapter(selectQueryText, connection);
                     DataTable resultQueryTable = new DataTable();
                     dataAdapter.Fill(resultQueryTable);
-                    receiverGridView.DataSource = resultQueryTable;
-                }
+	                return resultQueryTable;
+	            }
 	            else
 	            {
-                    CommonMethods.ShowMsg("Неверный SELECT запрос");
+                    Controller.ShowMsg("Неверный SELECT запрос");
+	                return null;
 	            }
                 
 	        }
             else
             {
-                CommonMethods.ShowMsg("Нет соединения с БД");
+                Controller.ShowMsg("Нет соединения с БД");
+                return null;
             }
 	    }
 
         // Выполнение скалярного SQL запроса
-	    public int DoScalarQuery(string scalarQuery)
+	    public int DoScalarQuery(string scalarQueryText)
 	    {
             if (IsConnected)
             {
                 // Если в запросе есть SELECT
-                if (scalarQuery.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
+                if (scalarQueryText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
                 {
-                    OleDbCommand command = new OleDbCommand(scalarQuery, connection);
+                    OleDbCommand command = new OleDbCommand(scalarQueryText, connection);
                     var resultQuery = command.ExecuteScalar();
                     return Convert.ToInt32(resultQuery);
                 }
                 else
                 {
-                    CommonMethods.ShowMsg("Неверный запрос");
+                    Controller.ShowMsg("Неверный запрос");
                     return -1;
                 }
             }
             else
             {
-                CommonMethods.ShowMsg("Нет соединения с БД");
+                Controller.ShowMsg("Нет соединения с БД");
                 return -1;
             }
 	    }

@@ -10,8 +10,6 @@ C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.pdb
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.exe
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.pdb
-C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.MainForm.resources
-C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Properties.Resources.resources
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.csproj.GenerateResource.Cache
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.exe
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.pdb
@@ -25,3 +23,4 @@ D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMag
 F:\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.exe
 F:\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.pdb
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.csprojResolveAssemblyReference.cache
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.MVC.View.resources

@@ -65,7 +65,7 @@ namespace CSharpMagistrProject.Input.Events
         {
             string queryText;
             queryText = "SELECT * FROM " + sourceEventTable;
-            dataBase.DoQuery(queryText,receiverGridView);
+            receiverGridView.DataSource=dataBase.DoSelectQuery(queryText);
         }
     }
 }

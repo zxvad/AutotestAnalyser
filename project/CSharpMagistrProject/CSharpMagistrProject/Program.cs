@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CSharpMagistrProject.MVC;
 
 namespace CSharpMagistrProject
 {
@@ -11,9 +12,11 @@ namespace CSharpMagistrProject
         [STAThread]
         static void Main()
         {
+            Controller controller=new Controller();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(controller.CreateFormView());
         }
     }
 }

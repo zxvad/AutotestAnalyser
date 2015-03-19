@@ -1,6 +1,6 @@
-﻿namespace CSharpMagistrProject
+﻿namespace CSharpMagistrProject.MVC
 {
-    partial class MainForm
+    partial class View
     {
         /// <summary>
         /// Требуется переменная конструктора.
@@ -144,7 +144,7 @@
             this.Controls.Add(this.resultQueryGridView);
             this.Name = "MainForm";
             this.Text = "Анализ ПО контроллера АСУТП";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Load += new System.EventHandler(this.View_Load);
             ((System.ComponentModel.ISupportInitialize)(this.resultQueryGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

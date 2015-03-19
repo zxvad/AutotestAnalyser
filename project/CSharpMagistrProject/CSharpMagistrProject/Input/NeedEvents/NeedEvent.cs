@@ -56,7 +56,7 @@ namespace CSharpMagistrProject.Input.NeedEvents
             queryText += @"FROM (" + sourceNeedEventTable + @" NeedEvent ";
             queryText += @"LEFT JOIN " + sourceEventTable + " Event ";
             queryText += @"ON NeedEvent.idEvent = Event.idEvent)";
-            dataBase.DoQuery(queryText, receiverGridView);
+            receiverGridView.DataSource=dataBase.DoSelectQuery(queryText);
         }
     }
 }
