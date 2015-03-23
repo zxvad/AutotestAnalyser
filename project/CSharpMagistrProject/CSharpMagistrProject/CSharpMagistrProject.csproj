@@ -50,14 +50,29 @@
     <Compile Include="Analysis\DoneEvent\EventFinder.cs" />
     <Compile Include="Check\CheckSystem\CheckEvent.cs" />
     <Compile Include="Check\CheckSystem\CheckNeedEvent.cs" />
+    <Compile Include="Input\InputForms\InputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input\InputForms\InputForm.Designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Input\InputForms\NeedEventInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input\InputForms\NeedEventInput.Designer.cs">
+      <DependentUpon>NeedEventInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Input\InputForms\EventInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input\InputForms\EventInput.Designer.cs">
+      <DependentUpon>EventInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="MVC\Controller.cs" />
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="Input\Events\Event.cs" />
     <Compile Include="Input\InputForms\ControlPanelInput.cs" />
-    <Compile Include="Input\InputForms\EventInput.cs" />
-    <Compile Include="Input\InputForms\InputForm.cs" />
     <Compile Include="Input\NeedEvents\NeedEvent.cs" />
-    <Compile Include="Input\InputForms\NeedEventInput.cs" />
     <Compile Include="MVC\IView.cs" />
     <Compile Include="MVC\View.cs">
       <SubType>Form</SubType>
@@ -70,7 +85,12 @@
     <Compile Include="Output\OutputForm\DBGridEvent.cs" />
     <Compile Include="Output\OutputForm\DBGridNeedEvent.cs" />
     <Compile Include="Output\OutputForm\DBGridResults.cs" />
-    <Compile Include="Output\OutputForm\OutputForm.cs" />
+    <Compile Include="Output\OutputForm\OutputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Output\OutputForm\OutputForm.Designer.cs">
+      <DependentUpon>OutputForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Output\SelectResult\SelectEvent.cs" />
     <Compile Include="Output\SelectResult\SelectNeedEvent.cs" />
     <Compile Include="Output\SelectResult\SelectResults.cs" />
@@ -78,6 +98,16 @@
     <Compile Include="Reading\InputSignal\InputSignal.cs" />
     <Compile Include="Reading\InputSignal\SignalReader.cs" />
     <Compile Include="Reading\SignalDescription.cs" />
+    <EmbeddedResource Include="Input\InputForms\InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input\InputForms\NeedEventInput.resx">
+      <DependentUpon>NeedEventInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input\InputForms\EventInput.resx">
+      <DependentUpon>EventInput.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="MVC\View.resx">
       <DependentUpon>View.cs</DependentUpon>
       <SubType>Designer</SubType>

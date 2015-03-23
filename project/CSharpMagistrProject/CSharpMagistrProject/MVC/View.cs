@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using CSharpMagistrProject.DB;
 using CSharpMagistrProject.Input.Events;
+using CSharpMagistrProject.Input.InputForms;
+using CSharpMagistrProject.Output.OutputForm;
 
 namespace CSharpMagistrProject.MVC
 {
@@ -9,6 +11,8 @@ namespace CSharpMagistrProject.MVC
     public partial class View : Form, IView
     {
         public const int ESCAPE = 8;
+        public InputForm InputForm;
+        public OutputForm OutputForm;
 
         private Controller controller;
         public Controller Controller
@@ -24,70 +28,20 @@ namespace CSharpMagistrProject.MVC
 
         private void View_Load(object sender, EventArgs e)
         {
-            try
-            {
-                controller.ShowEvents(resultQueryGridView);
-
-            }
-            catch (Exception exception)
-            {
-                Controller.ShowMsg(exception.Message);
-            }
+            InputForm = new InputForm();
+            OutputForm = new OutputForm();
+            InputForm.Controller = this.Controller;
+            OutputForm.Controller = this.Controller;
         }
 
-        private void addButton_Click(object sender, EventArgs e)
+        private void showInputFormButton_Click(object sender, EventArgs e)
         {
-            
-            try
-            {
-                controller.AddEvent(textBoxNameToAdd.Text);
-                controller.ShowEvents(resultQueryGridView);
-                textBoxNameToAdd.Clear();
-            }
-            catch (Exception exception)
-            {
-                Controller.ShowMsg(exception.Message);
-            }
+            InputForm.Show();
         }
 
-        private void delButton_Click(object sender, EventArgs e)
+        private void showOutputFormButton_Click(object sender, EventArgs e)
         {
-            
-            try
-            {
-                controller.DelEvent(Convert.ToInt32(textBoxIDToDel.Text));
-                controller.ShowEvents(resultQueryGridView);
-                textBoxIDToDel.Clear();
-            }
-            catch (Exception exception)
-            {
-                Controller.ShowMsg(exception.Message);
-            }
-        }
-        
-        private void updateButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                controller.UpdateNameEvent(Convert.ToInt32(textBoxIDToUpdate.Text), textBoxNameToUpdate.Text);
-                controller.ShowEvents(resultQueryGridView);
-                textBoxIDToUpdate.Clear();
-                textBoxNameToUpdate.Clear();
-            }
-            catch (Exception exception)
-            {
-                Controller.ShowMsg(exception.Message);
-            }
-        }
-
-        //puts only numbers and backspace in textbox
-		private void textBoxID_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (char.IsDigit(ch) == false && ch!=ESCAPE)
-            {
-                e.Handled = true;
-            }
+            OutputForm.Show();
         }
     }
 }

@@ -24,3 +24,6 @@ F:\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.
 F:\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.pdb
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.csprojResolveAssemblyReference.cache
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.MVC.View.resources
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.NeedEventInput.resources
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.InputForm.resources
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.EventInput.resources

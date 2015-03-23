@@ -27,7 +27,7 @@ namespace CSharpMagistrProject.Input.NeedEvents
             dataBase.DoQuery(queryText);
         }
 
-			//Удаление необходимого события по id
+		//Удаление необходимого события по id
         public override void Del(int id)
         {
             string queryText;
@@ -36,23 +36,22 @@ namespace CSharpMagistrProject.Input.NeedEvents
             dataBase.DoQuery(queryText);
         }
 
-			//Изменение записи о событии
-        public override void Update(int id, string newName)
+        public override void Update(int id, string newName){}
+
+        //Изменение записи о событии
+        public void Update(int id, int newIdEvent)
         {
             string queryText;
-            queryText = @"SELECT idEvent FROM " + sourceNeedEventTable + " WHERE id=" + id;
-            int idEvent = dataBase.DoScalarQuery(queryText);
-
-            queryText = "UPDATE " + sourceEventTable;
-            queryText += @" SET name = """ + newName + @"""";
-            queryText += " WHERE idEvent = " + idEvent;
+            queryText = "UPDATE " + sourceNeedEventTable;
+            queryText += " SET idEvent = " + newIdEvent;
+            queryText += " WHERE id = " + id;
             dataBase.DoQuery(queryText);
         }
 
         public override void Show(DataGridView receiverGridView)
         {
             string queryText;
-            queryText = @"SELECT NeedEvent.id, Event.name";
+            queryText = @"SELECT NeedEvent.id, Event.name ";
             queryText += @"FROM (" + sourceNeedEventTable + @" NeedEvent ";
             queryText += @"LEFT JOIN " + sourceEventTable + " Event ";
             queryText += @"ON NeedEvent.idEvent = Event.idEvent)";

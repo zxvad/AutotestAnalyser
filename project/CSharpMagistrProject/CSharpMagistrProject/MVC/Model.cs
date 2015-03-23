@@ -5,7 +5,7 @@ namespace CSharpMagistrProject.MVC
 {
     public class Model
     {
-        public DataBase dataBase;
+        private DataBase dataBase;
         private string logFileName;
 
         public Model()
@@ -13,5 +13,11 @@ namespace CSharpMagistrProject.MVC
             dataBase = new DataBase();
 
         }
+
+        public DataBase GetDataBase()
+        {
+            return dataBase;
+        }
+
     }
 }

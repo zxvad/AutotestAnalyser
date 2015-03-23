@@ -1,10 +1,53 @@
-﻿namespace CSharpMagistrProject.Input.InputForms
+﻿using System.Windows.Forms;
+using CSharpMagistrProject.MVC;
+
+namespace CSharpMagistrProject.Input.InputForms
 {
-    class InputForm
+    public partial class InputForm : Form, IView
     {
-        public void Show(){}
-        public void Close(){}
-        public void Clear(){}
-        public void Refresh(){}
+        public EventInput EventInputForm;
+
+        public NeedEventInput NeedEventInputForm;
+
+        private Controller controller;
+
+        public Controller Controller
+        {
+            get { return controller; }
+            set { controller = value; }
+        }
+
+
+        public InputForm()
+        {
+            InitializeComponent();
+        }
+
+        private void showEventInputFormButton_Click(object sender, System.EventArgs e)
+        {
+            EventInputForm.Show();
+        }
+
+        private void showNeedEventInputFormButton_Click(object sender, System.EventArgs e)
+        {
+            NeedEventInputForm.Show();
+        }
+
+        private void InputForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
+
+        private void InputForm_Load(object sender, System.EventArgs e)
+        {
+            NeedEventInputForm = new NeedEventInput();
+            EventInputForm = new EventInput();
+            NeedEventInputForm.Controller = this.Controller;
+            EventInputForm.Controller = this.Controller;
+        }
     }
 }

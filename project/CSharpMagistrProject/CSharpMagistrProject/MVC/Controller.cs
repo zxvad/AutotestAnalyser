@@ -15,8 +15,8 @@ namespace CSharpMagistrProject.MVC
         public Controller()
         {
             model=new Model();
-            listEvent = new Event(model.dataBase, "EventTable");
-            listNeedEvent=new NeedEvent(model.dataBase,"EventTable","NeedEventTable");
+            listEvent = new Event(model.GetDataBase(), "EventTable");
+            listNeedEvent=new NeedEvent(model.GetDataBase(),"EventTable","NeedEventTable");
         }
         public Form CreateFormView()
         {
@@ -31,10 +31,7 @@ namespace CSharpMagistrProject.MVC
             // ... добавить лог
         }
 
-        public void ShowEvents(DataGridView resultQueryGridView)
-        {
-            listEvent.Show(resultQueryGridView);
-        }
+        // Methods for Events
 
         public void AddEvent(string nameEvent)
         {
@@ -50,5 +47,32 @@ namespace CSharpMagistrProject.MVC
         {
             listEvent.Update(id,newName);
         }
+
+        public void ShowEvents(DataGridView resultQueryGridView)
+        {
+            listEvent.Show(resultQueryGridView);
+        }
+
+        // Methods for NeedEvents
+        public void ShowNeedEvents(DataGridView resultQueryGridView)
+        {
+            listNeedEvent.Show(resultQueryGridView);
+        }
+
+        public void AddNeedEvent(int idEvent)
+        {
+            listNeedEvent.Add(idEvent);
+        }
+
+        public void DelNeedEvent(int id)
+        {
+            listNeedEvent.Del(id);
+        }
+
+        public void UpdateNeedEvent(int id, int newIdEvent)
+        {
+            listNeedEvent.Update(id,newIdEvent);
+        }
+
     }
 }
