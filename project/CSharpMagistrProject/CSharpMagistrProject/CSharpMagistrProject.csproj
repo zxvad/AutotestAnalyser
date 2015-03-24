@@ -50,6 +50,7 @@
     <Compile Include="Analysis\DoneEvent\EventFinder.cs" />
     <Compile Include="Check\CheckSystem\CheckEvent.cs" />
     <Compile Include="Check\CheckSystem\CheckNeedEvent.cs" />
+    <Compile Include="DB\LogFile.cs" />
     <Compile Include="Input\InputForms\InputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +69,7 @@
     <Compile Include="Input\InputForms\EventInput.Designer.cs">
       <DependentUpon>EventInput.cs</DependentUpon>
     </Compile>
+    <Compile Include="Keys.cs" />
     <Compile Include="MVC\Controller.cs" />
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="Input\Events\Event.cs" />

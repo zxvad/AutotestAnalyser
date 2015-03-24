@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using CSharpMagistrProject.Input.Events;
 using CSharpMagistrProject.Input.NeedEvents;
 
@@ -54,6 +55,7 @@ namespace CSharpMagistrProject.MVC
         }
 
         // Methods for NeedEvents
+
         public void ShowNeedEvents(DataGridView resultQueryGridView)
         {
             listNeedEvent.Show(resultQueryGridView);
@@ -72,6 +74,12 @@ namespace CSharpMagistrProject.MVC
         public void UpdateNeedEvent(int id, int newIdEvent)
         {
             listNeedEvent.Update(id,newIdEvent);
+        }
+
+
+        public void AddToLog(Exception exception)
+        {
+            model.logFile.Write(exception);
         }
 
     }

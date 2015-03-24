@@ -4,18 +4,15 @@ using CSharpMagistrProject.MVC;
 
 namespace CSharpMagistrProject.Input.InputForms
 {
-
+    
     public partial class EventInput : Form, IView
     {
-        public const int ESCAPE = 8;
-
         private Controller controller;
         public Controller Controller
         {
             get { return controller; }
             set { controller = value; }
         }
-
 
         public EventInput()
         {
@@ -33,6 +30,7 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
+                controller.AddToLog(exception);
             }
         }
 
@@ -47,6 +45,7 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
+                controller.AddToLog(exception);
             }
         }
 
@@ -61,6 +60,7 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
+                controller.AddToLog(exception);
             }
         }
 
@@ -76,6 +76,7 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
+                controller.AddToLog(exception);
             }
         }
 
@@ -84,7 +85,7 @@ namespace CSharpMagistrProject.Input.InputForms
         private void textBoxID_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (char.IsDigit(ch) == false && ch!=ESCAPE)
+            if (char.IsDigit(ch) == false && ch!=(int) Keys.Escape)
             {
                 e.Handled = true;
             }

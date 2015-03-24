@@ -1,0 +1,3 @@
+[24.03.2015 23:42:30.212] [System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling()] Ќевозможно добавление или изменение записи. ƒл€ обеспечени€ целостности данных необходимо наличие св€занной записи в таблице 'EventTable'.
+[24.03.2015 23:43:09.002] [System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling()] Ќевозможно добавление или изменение записи. ƒл€ обеспечени€ целостности данных необходимо наличие св€занной записи в таблице 'EventTable'.
+[24.03.2015 23:50:36.450] [System.Number.StringToNumber()] ¬ходна€ строка имела неверный формат.

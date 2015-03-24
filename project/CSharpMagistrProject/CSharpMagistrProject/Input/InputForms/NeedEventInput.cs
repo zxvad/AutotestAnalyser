@@ -44,6 +44,7 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
+                controller.AddToLog(exception);
             }
         }
 
@@ -58,6 +59,7 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
+                controller.AddToLog(exception);
             }
         }
 
@@ -72,6 +74,7 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
+                controller.AddToLog(exception);
             }
         }
 
@@ -87,6 +90,17 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
+                controller.AddToLog(exception);
+            }
+        }
+
+        //puts only numbers and backspace in textbox
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (char.IsDigit(ch) == false && ch != (int) Keys.Escape)
+            {
+                e.Handled = true;
             }
         }
     }

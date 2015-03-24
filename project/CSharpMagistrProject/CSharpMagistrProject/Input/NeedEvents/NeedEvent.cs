@@ -36,6 +36,7 @@ namespace CSharpMagistrProject.Input.NeedEvents
             dataBase.DoQuery(queryText);
         }
 
+        //заглушка
         public override void Update(int id, string newName){}
 
         //Изменение записи о событии
@@ -48,13 +49,14 @@ namespace CSharpMagistrProject.Input.NeedEvents
             dataBase.DoQuery(queryText);
         }
 
+        //Показ всех необходимых событий
         public override void Show(DataGridView receiverGridView)
         {
             string queryText;
             queryText = @"SELECT NeedEvent.id, Event.name ";
             queryText += @"FROM (" + sourceNeedEventTable + @" NeedEvent ";
             queryText += @"LEFT JOIN " + sourceEventTable + " Event ";
-            queryText += @"ON NeedEvent.idEvent = Event.idEvent)";
+            queryText += @"ON NeedEvent.idEvent = Event.id)";
             receiverGridView.DataSource=dataBase.DoSelectQuery(queryText);
         }
     }

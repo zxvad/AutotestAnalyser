@@ -22,7 +22,7 @@ namespace CSharpMagistrProject.Input.Events
             if (dataBase.isConnected==true)
             {
                 string queryText;
-                queryText = "SELECT MAX(idEvent) FROM " + sourceTable;
+                queryText = "SELECT MAX(id) FROM " + sourceTable;
                 int result = dataBase.DoScalarQuery(queryText);
                 if (result!=-1)
                 {
@@ -36,7 +36,7 @@ namespace CSharpMagistrProject.Input.Events
         public virtual void Add(string nameEvent)
         {
             string queryText;
-            queryText = "INSERT INTO " + sourceEventTable + "(idEvent, name) ";
+            queryText = "INSERT INTO " + sourceEventTable + "(id, name) ";
             queryText += "VALUES (" + NewID(sourceEventTable) + "," + @"""" + nameEvent + @""")";
             dataBase.DoQuery(queryText);
         }
@@ -46,7 +46,7 @@ namespace CSharpMagistrProject.Input.Events
         {
             string queryText;
             queryText = "DELETE FROM " + sourceEventTable;
-            queryText += " WHERE idEvent = "+ id.ToString();
+            queryText += " WHERE id = "+ id;
             dataBase.DoQuery(queryText);
         }
 
@@ -56,7 +56,7 @@ namespace CSharpMagistrProject.Input.Events
             string queryText;
             queryText = "UPDATE " + sourceEventTable;
             queryText += @" SET name = """ + newName+ @"""";
-            queryText += " WHERE idEvent = " + id.ToString();
+            queryText += " WHERE id = " + id;
             dataBase.DoQuery(queryText);
         }
 
