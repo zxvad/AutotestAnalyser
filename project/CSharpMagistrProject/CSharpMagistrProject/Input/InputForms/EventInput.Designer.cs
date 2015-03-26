@@ -46,6 +46,7 @@
             this.eventsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.eventsGridView.Location = new System.Drawing.Point(12, 12);
             this.eventsGridView.Name = "eventsGridView";
+            this.eventsGridView.ReadOnly = true;
             this.eventsGridView.Size = new System.Drawing.Size(322, 358);
             this.eventsGridView.TabIndex = 0;
             // 

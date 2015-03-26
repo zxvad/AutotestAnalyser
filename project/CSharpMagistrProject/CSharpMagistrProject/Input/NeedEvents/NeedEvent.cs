@@ -5,39 +5,34 @@ using CSharpMagistrProject.Input.Events;
 namespace CSharpMagistrProject.Input.NeedEvents
 {
     //Необходимые события
-    class NeedEvent:Event
+    class NeedEvent
     {
+        private Event listEvent;
         private string sourceNeedEventTable;
 
-        public NeedEvent(DataBase sourceDataBase, string sourceEventTable, string sourceNeedEventTable):base(sourceDataBase,sourceEventTable)
+        public NeedEvent(DataBase sourceDataBase, string sourceEventTable, string sourceNeedEventTable)
         {
-            dataBase = sourceDataBase;
-            this.sourceEventTable = sourceEventTable;
+            listEvent=new Event(sourceDataBase,sourceEventTable);
             this.sourceNeedEventTable = sourceNeedEventTable;
         }
-
-        public override void Add(string nameEvent){}
         
         //Добавление необходимого события
         public void Add(int idEvent)
         {
             string queryText;
             queryText = "INSERT INTO " + sourceNeedEventTable + "(id, idEvent) ";
-            queryText += "VALUES (" + NewID(sourceNeedEventTable) + "," + idEvent + ")";
-            dataBase.DoQuery(queryText);
+            queryText += "VALUES (" + listEvent.NewID(sourceNeedEventTable) + "," + idEvent + ")";
+            listEvent.DataBase.DoQuery(queryText);
         }
 
 		//Удаление необходимого события по id
-        public override void Del(int id)
+        public void Del(int id)
         {
             string queryText;
             queryText = "DELETE FROM " + sourceNeedEventTable;
             queryText += " WHERE id = " + id;
-            dataBase.DoQuery(queryText);
+            listEvent.DataBase.DoQuery(queryText);
         }
-
-        //заглушка
-        public override void Update(int id, string newName){}
 
         //Изменение записи о событии
         public void Update(int id, int newIdEvent)
@@ -46,18 +41,18 @@ namespace CSharpMagistrProject.Input.NeedEvents
             queryText = "UPDATE " + sourceNeedEventTable;
             queryText += " SET idEvent = " + newIdEvent;
             queryText += " WHERE id = " + id;
-            dataBase.DoQuery(queryText);
+            listEvent.DataBase.DoQuery(queryText);
         }
 
         //Показ всех необходимых событий
-        public override void Show(DataGridView receiverGridView)
+        public void Show(DataGridView receiverGridView)
         {
             string queryText;
             queryText = @"SELECT NeedEvent.id, Event.name ";
             queryText += @"FROM (" + sourceNeedEventTable + @" NeedEvent ";
-            queryText += @"LEFT JOIN " + sourceEventTable + " Event ";
+            queryText += @"LEFT JOIN " + listEvent.SourceEventTable + " Event ";
             queryText += @"ON NeedEvent.idEvent = Event.id)";
-            receiverGridView.DataSource=dataBase.DoSelectQuery(queryText);
+            receiverGridView.DataSource = listEvent.DataBase.DoSelectQuery(queryText);
         }
     }
 }

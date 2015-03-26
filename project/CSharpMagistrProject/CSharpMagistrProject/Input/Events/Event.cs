@@ -6,8 +6,17 @@ namespace CSharpMagistrProject.Input.Events
     //Список событий
     class Event
     {
-        protected string sourceEventTable;
-        protected DataBase dataBase;
+        private string sourceEventTable;
+        public string SourceEventTable
+        {
+            get { return sourceEventTable; }
+        }
+
+        private DataBase dataBase;
+        public DataBase DataBase
+        {
+            get { return dataBase; }
+        }
 
         public Event(DataBase sourceDataBase, string sourceEventTable)
         {
@@ -16,8 +25,8 @@ namespace CSharpMagistrProject.Input.Events
             this.sourceEventTable = sourceEventTable;
         }
 
-		//Возврщает новый id для вставки записи в БД
-        protected int NewID(string sourceTable)
+        //Возврщает новый id для вставки записи в БД
+        public int NewID(string sourceTable)
         {
             if (dataBase.isConnected==true)
             {
@@ -33,7 +42,7 @@ namespace CSharpMagistrProject.Input.Events
         }
 
 		//Добавление события
-        public virtual void Add(string nameEvent)
+        public void Add(string nameEvent)
         {
             string queryText;
             queryText = "INSERT INTO " + sourceEventTable + "(id, name) ";
@@ -42,7 +51,7 @@ namespace CSharpMagistrProject.Input.Events
         }
 
         //Удаление необходимого события по id
-        public virtual void Del(int id)
+        public void Del(int id)
         {
             string queryText;
             queryText = "DELETE FROM " + sourceEventTable;
@@ -51,7 +60,7 @@ namespace CSharpMagistrProject.Input.Events
         }
 
 		//Изменение записи о событии
-        public virtual void Update(int id, string newName)
+        public void Update(int id, string newName)
         {
             string queryText;
             queryText = "UPDATE " + sourceEventTable;
@@ -61,7 +70,7 @@ namespace CSharpMagistrProject.Input.Events
         }
 
 		//Вывод списка событий
-        public virtual  void Show(DataGridView receiverGridView)
+        public  void Show(DataGridView receiverGridView)
         {
             string queryText;
             queryText = "SELECT * FROM " + sourceEventTable;
