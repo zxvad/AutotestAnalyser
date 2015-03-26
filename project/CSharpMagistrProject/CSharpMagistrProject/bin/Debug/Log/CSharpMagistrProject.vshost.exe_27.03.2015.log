@@ -1,0 +1,3 @@
+[27.03.2015 01:04:46.482] [System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling()] Удаление или изменение записи невозможно.  В таблице 'NeedEventTable' имеются связанные записи.
+[27.03.2015 01:06:15.931] [System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling()] Удаление или изменение записи невозможно.  В таблице 'NeedEventTable' имеются связанные записи.
+[27.03.2015 01:07:13.165] [System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling()] Невозможно добавление или изменение записи. Для обеспечения целостности данных необходимо наличие связанной записи в таблице 'EventTable'.

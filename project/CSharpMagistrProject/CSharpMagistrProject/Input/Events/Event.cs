@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Data.OleDb;
+using System.Windows.Forms;
 using CSharpMagistrProject.DB;
 
 namespace CSharpMagistrProject.Input.Events
@@ -26,55 +27,75 @@ namespace CSharpMagistrProject.Input.Events
         }
 
         //Возврщает новый id для вставки записи в БД
-        public int NewID(string sourceTable)
+        public int NewId(string sourceTable)
         {
-            if (dataBase.isConnected==true)
+            string queryText = "SELECT MAX(id) FROM " + sourceTable;
+            OleDbCommand command = new OleDbCommand(queryText);
+
+            int result = dataBase.DoScalarQuery(command);
+            if (result != -1)
             {
-                string queryText;
-                queryText = "SELECT MAX(id) FROM " + sourceTable;
-                int result = dataBase.DoScalarQuery(queryText);
-                if (result!=-1)
-                {
-                    return ++result; 
-                }
+                return ++result;
             }
+
             return -1;
         }
 
-		//Добавление события
+        //Добавление события
         public void Add(string nameEvent)
         {
-            string queryText;
-            queryText = "INSERT INTO " + sourceEventTable + "(id, name) ";
-            queryText += "VALUES (" + NewID(sourceEventTable) + "," + @"""" + nameEvent + @""")";
-            dataBase.DoQuery(queryText);
+            string queryText="INSERT INTO "+sourceEventTable+" (id, name) "+
+                             "VALUES (?, ?)";
+
+            OleDbCommand command = new OleDbCommand(queryText);
+
+            command.Parameters.Add("newId", OleDbType.Integer);
+            command.Parameters.Add("nameEvent", OleDbType.VarChar);
+
+            command.Parameters["newId"].Value = NewId(sourceEventTable);
+            command.Parameters["nameEvent"].Value = nameEvent;
+
+            dataBase.DoQuery(command);
+
+
         }
 
         //Удаление необходимого события по id
         public void Del(int id)
         {
-            string queryText;
-            queryText = "DELETE FROM " + sourceEventTable;
-            queryText += " WHERE id = "+ id;
-            dataBase.DoQuery(queryText);
+            string queryText= "DELETE FROM " + sourceEventTable +
+                              " WHERE id = ?";
+            OleDbCommand command = new OleDbCommand(queryText);
+
+            command.Parameters.Add("id", OleDbType.Integer);
+            command.Parameters["id"].Value = id;
+            
+            dataBase.DoQuery(command);
         }
 
 		//Изменение записи о событии
         public void Update(int id, string newName)
         {
-            string queryText;
-            queryText = "UPDATE " + sourceEventTable;
-            queryText += @" SET name = """ + newName+ @"""";
-            queryText += " WHERE id = " + id;
-            dataBase.DoQuery(queryText);
+            string queryText = "UPDATE " + sourceEventTable +
+                               " SET name = ?" +
+                               " WHERE id = ?";
+            OleDbCommand command = new OleDbCommand(queryText);
+
+            command.Parameters.Add("newName", OleDbType.VarChar);
+            command.Parameters.Add("id", OleDbType.Integer);
+
+            command.Parameters["newName"].Value = newName;
+            command.Parameters["id"].Value = id;
+
+            dataBase.DoQuery(command);
         }
 
 		//Вывод списка событий
         public  void Show(DataGridView receiverGridView)
         {
-            string queryText;
-            queryText = "SELECT * FROM " + sourceEventTable;
-            receiverGridView.DataSource=dataBase.DoSelectQuery(queryText);
+            string queryText = "SELECT * FROM " + sourceEventTable;
+            OleDbCommand command = new OleDbCommand(queryText);
+            receiverGridView.DataSource = dataBase.DoSelectQuery(command);
         }
     }
 }

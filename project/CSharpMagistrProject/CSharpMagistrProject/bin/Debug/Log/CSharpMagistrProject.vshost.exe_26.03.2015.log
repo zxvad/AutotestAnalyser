@@ -1,1 +1,3 @@
 [26.03.2015 21:34:45.278] [System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling()] Невозможно добавление или изменение записи. Для обеспечения целостности данных необходимо наличие связанной записи в таблице 'EventTable'.
+[26.03.2015 23:58:22.347] [System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling()] Ошибка синтаксиса в инструкции INSERT INTO.
+[26.03.2015 23:58:27.293] [System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling()] Ошибка синтаксиса в инструкции INSERT INTO.

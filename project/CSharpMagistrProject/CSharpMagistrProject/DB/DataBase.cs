@@ -53,17 +53,18 @@ namespace CSharpMagistrProject.DB
 	    }
 
         //выполнение SQL запроса (INSERT, UPDATE, DELETE)
-	    public void DoQuery(string queryText)
-	    { 
-            if (IsConnected)
+	    public void DoQuery(OleDbCommand command)
+	    {
+	        if (command == null) throw new ArgumentNullException("command");
+	        if (IsConnected)
             {
                 //Если в запросе есть insert/update/delete
-                if (queryText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > -1 ||
-                    queryText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > -1 ||
-                    queryText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > -1)
+                if (command.CommandText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > -1 ||
+                    command.CommandText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > -1 ||
+                    command.CommandText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > -1)
                 {
                     // выполнение запроса 
-                    OleDbCommand command = new OleDbCommand(queryText, connection);
+                    command.Connection = connection;
                     command.ExecuteNonQuery();
                 }
                 else
@@ -77,15 +78,17 @@ namespace CSharpMagistrProject.DB
             }
 	    }
 
-        //выполнение SQL запроса (SELECT) и занесение результатов в DataGridView
-	    public DataTable DoSelectQuery(string selectQueryText)
+        //выполнение SQL запроса (SELECT) и занесение результатов в DataTable
+	    public DataTable DoSelectQuery(OleDbCommand command)
 	    {
-            if (IsConnected)
+	        if (command == null) throw new ArgumentNullException("command");
+	        if (IsConnected)
 	        {
                 // Если в запросе есть SELECT
-                if (selectQueryText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
-	            {
-                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(selectQueryText, connection);
+                if (command.CommandText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
+                {
+                    command.Connection = connection;
+                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(command);
                     DataTable resultQueryTable = new DataTable();
                     dataAdapter.Fill(resultQueryTable);
 	                return resultQueryTable;
@@ -105,14 +108,15 @@ namespace CSharpMagistrProject.DB
 	    }
 
         // Выполнение скалярного SQL запроса
-	    public int DoScalarQuery(string scalarQueryText)
+	    public int DoScalarQuery(OleDbCommand command)
 	    {
-            if (IsConnected)
+	        if (command == null) throw new ArgumentNullException("command");
+	        if (IsConnected)
             {
                 // Если в запросе есть SELECT
-                if (scalarQueryText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
+                if (command.CommandText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
                 {
-                    OleDbCommand command = new OleDbCommand(scalarQueryText, connection);
+                    command.Connection = connection;
                     var resultQuery = command.ExecuteScalar();
                     return Convert.ToInt32(resultQuery);
                 }
