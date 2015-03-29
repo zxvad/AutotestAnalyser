@@ -86,7 +86,7 @@
             this.textBoxIdNeedEventToAdd.Name = "textBoxIdNeedEventToAdd";
             this.textBoxIdNeedEventToAdd.Size = new System.Drawing.Size(37, 20);
             this.textBoxIdNeedEventToAdd.TabIndex = 4;
-            this.textBoxIdNeedEventToAdd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBoxIdNeedEventToAdd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckKeyPressedIsDigit);
             // 
             // textBoxIdNeedEventToDel
             // 
@@ -94,7 +94,7 @@
             this.textBoxIdNeedEventToDel.Name = "textBoxIdNeedEventToDel";
             this.textBoxIdNeedEventToDel.Size = new System.Drawing.Size(37, 20);
             this.textBoxIdNeedEventToDel.TabIndex = 5;
-            this.textBoxIdNeedEventToDel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBoxIdNeedEventToDel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckKeyPressedIsDigit);
             // 
             // textBoxIdNeedEventToUpdate
             // 
@@ -102,7 +102,7 @@
             this.textBoxIdNeedEventToUpdate.Name = "textBoxIdNeedEventToUpdate";
             this.textBoxIdNeedEventToUpdate.Size = new System.Drawing.Size(37, 20);
             this.textBoxIdNeedEventToUpdate.TabIndex = 6;
-            this.textBoxIdNeedEventToUpdate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBoxIdNeedEventToUpdate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckKeyPressedIsDigit);
             // 
             // textBoxNewIdNeedEvent
             // 
@@ -110,7 +110,7 @@
             this.textBoxNewIdNeedEvent.Name = "textBoxNewIdNeedEvent";
             this.textBoxNewIdNeedEvent.Size = new System.Drawing.Size(35, 20);
             this.textBoxNewIdNeedEvent.TabIndex = 7;
-            this.textBoxNewIdNeedEvent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            this.textBoxNewIdNeedEvent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckKeyPressedIsDigit);
             // 
             // labelId
             // 

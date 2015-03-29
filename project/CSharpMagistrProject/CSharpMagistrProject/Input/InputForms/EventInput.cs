@@ -30,7 +30,14 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
-                controller.AddToLog(exception);
+                try
+                {
+                    controller.AddToLog(exception);
+                }
+                catch (Exception ex)
+                {
+                    // ignored
+                }
             }
         }
 
@@ -45,7 +52,14 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
-                controller.AddToLog(exception);
+                try
+                {
+                    controller.AddToLog(exception);
+                }
+                catch (Exception ex)
+                {
+                    // ignored
+                }
             }
         }
 
@@ -60,7 +74,14 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
-                controller.AddToLog(exception);
+                try
+                {
+                    controller.AddToLog(exception);
+                }
+                catch (Exception ex)
+                {
+                    // ignored
+                }
             }
         }
 
@@ -76,16 +97,22 @@ namespace CSharpMagistrProject.Input.InputForms
             catch (Exception exception)
             {
                 Controller.ShowMsg(exception.Message);
-                controller.AddToLog(exception);
+                try
+                {
+                    controller.AddToLog(exception);
+                }
+                catch (Exception ex)
+                {
+                    // ignored
+                }
             }
         }
 
         //puts only numbers and backspace in textbox
-
-        private void textBoxID_KeyPress(object sender, KeyPressEventArgs e)
+        public void CheckKeyPressedIsDigit(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (char.IsDigit(ch) == false && ch!=(int) Keys.Escape)
+            if (char.IsDigit(ch) == false && ch != (int)Keys.Escape)
             {
                 e.Handled = true;
             }

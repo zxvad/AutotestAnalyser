@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CSharpMagistrProject.Check.CheckSystem;
 using CSharpMagistrProject.Input.Events;
 using CSharpMagistrProject.Input.NeedEvents;
 
@@ -18,7 +19,7 @@ namespace CSharpMagistrProject.MVC
             model=new Model();
             listEvent = new Event(model.GetDataBase(), "EventTable");
             listNeedEvent=new NeedEvent(model.GetDataBase(),"EventTable","NeedEventTable");
-        }
+            }
         public Form CreateFormView()
         {
             View formView=new View();
@@ -26,6 +27,9 @@ namespace CSharpMagistrProject.MVC
             view.Controller = this;
             return formView;
         }
+
+
+
         public static void ShowMsg(string message)
         {
             MessageBox.Show(message);
@@ -76,11 +80,13 @@ namespace CSharpMagistrProject.MVC
             listNeedEvent.Update(id,newIdEvent);
         }
 
+        // Methods for Logs
 
         public void AddToLog(Exception exception)
         {
             model.logFile.Write(exception);
         }
+
 
     }
 }

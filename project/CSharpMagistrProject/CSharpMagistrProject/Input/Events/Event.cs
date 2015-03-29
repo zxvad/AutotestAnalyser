@@ -1,6 +1,8 @@
 ﻿using System.Data.OleDb;
 using System.Windows.Forms;
+using CSharpMagistrProject.Check.CheckSystem;
 using CSharpMagistrProject.DB;
+using CSharpMagistrProject.MVC;
 
 namespace CSharpMagistrProject.Input.Events
 {
@@ -13,6 +15,8 @@ namespace CSharpMagistrProject.Input.Events
             get { return sourceEventTable; }
         }
 
+        private CheckEvent check;
+
         private DataBase dataBase;
         public DataBase DataBase
         {
@@ -24,6 +28,7 @@ namespace CSharpMagistrProject.Input.Events
             dataBase = sourceDataBase;
             dataBase.Connect();
             this.sourceEventTable = sourceEventTable;
+            check = new CheckEvent(dataBase, sourceEventTable);
         }
 
         //Возврщает новый id для вставки записи в БД
@@ -44,19 +49,25 @@ namespace CSharpMagistrProject.Input.Events
         //Добавление события
         public void Add(string nameEvent)
         {
-            string queryText="INSERT INTO "+sourceEventTable+" (id, name) "+
-                             "VALUES (?, ?)";
+            if (check.CheckForUnique(nameEvent))
+            {
+                string queryText = "INSERT INTO " + sourceEventTable + " (id, name) " +
+                                   "VALUES (?, ?)";
 
-            OleDbCommand command = new OleDbCommand(queryText);
+                OleDbCommand command = new OleDbCommand(queryText);
 
-            command.Parameters.Add("newId", OleDbType.Integer);
-            command.Parameters.Add("nameEvent", OleDbType.VarChar);
+                command.Parameters.Add("newId", OleDbType.Integer);
+                command.Parameters.Add("nameEvent", OleDbType.VarChar);
 
-            command.Parameters["newId"].Value = NewId(sourceEventTable);
-            command.Parameters["nameEvent"].Value = nameEvent;
+                command.Parameters["newId"].Value = NewId(sourceEventTable);
+                command.Parameters["nameEvent"].Value = nameEvent;
 
-            dataBase.DoQuery(command);
-
+                dataBase.DoQuery(command);
+            }
+            else
+            {
+                Controller.ShowMsg("Такое событие уже существует");
+            }
 
         }
 

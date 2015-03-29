@@ -63,7 +63,7 @@
             this.textBoxIDToDel.Name = "textBoxIDToDel";
             this.textBoxIDToDel.Size = new System.Drawing.Size(47, 20);
             this.textBoxIDToDel.TabIndex = 2;
-            this.textBoxIDToDel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxID_KeyPress);
+            this.textBoxIDToDel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckKeyPressedIsDigit);
             // 
             // textBoxIDToUpdate
             // 
@@ -71,7 +71,7 @@
             this.textBoxIDToUpdate.Name = "textBoxIDToUpdate";
             this.textBoxIDToUpdate.Size = new System.Drawing.Size(47, 20);
             this.textBoxIDToUpdate.TabIndex = 3;
-            this.textBoxIDToUpdate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxID_KeyPress);
+            this.textBoxIDToUpdate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckKeyPressedIsDigit);
             // 
             // textBoxNameToUpdate
             // 
