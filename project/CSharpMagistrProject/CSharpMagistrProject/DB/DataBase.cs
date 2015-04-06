@@ -93,18 +93,11 @@ namespace CSharpMagistrProject.DB
                     dataAdapter.Fill(resultQueryTable);
 	                return resultQueryTable;
 	            }
-	            else
-	            {
-                    Controller.ShowMsg("Неверный SELECT запрос");
-	                return null;
-	            }
-                
+	            Controller.ShowMsg("Неверный SELECT запрос");
+	            return null;
 	        }
-            else
-            {
-                Controller.ShowMsg("Нет соединения с БД");
-                return null;
-            }
+	        Controller.ShowMsg("Нет соединения с БД");
+	        return null;
 	    }
 
         // Выполнение скалярного SQL запроса
@@ -120,17 +113,11 @@ namespace CSharpMagistrProject.DB
                     var resultQuery = command.ExecuteScalar();
                     return Convert.ToInt32(resultQuery);
                 }
-                else
-                {
-                    Controller.ShowMsg("Неверный запрос");
-                    return -1;
-                }
-            }
-            else
-            {
-                Controller.ShowMsg("Нет соединения с БД");
+                Controller.ShowMsg("Неверный запрос");
                 return -1;
             }
+	        Controller.ShowMsg("Нет соединения с БД");
+	        return -1;
 	    }
 	}
 }

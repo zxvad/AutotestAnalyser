@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CSharpMagistrProject.Analysis.DoneEvent;
 using CSharpMagistrProject.Check.CheckSystem;
 using CSharpMagistrProject.Input.Events;
 using CSharpMagistrProject.Input.NeedEvents;
@@ -13,13 +14,16 @@ namespace CSharpMagistrProject.MVC
         private Model model;
         private Event listEvent;
         private NeedEvent listNeedEvent;
+        private DoneEvent doneEvent;
 
         public Controller()
         {
-            model=new Model();
+            model = new Model();
             listEvent = new Event(model.GetDataBase(), "EventTable");
-            listNeedEvent=new NeedEvent(model.GetDataBase(),"EventTable","NeedEventTable");
-            }
+            listNeedEvent = new NeedEvent(model.GetDataBase(), "EventTable", "NeedEventTable");
+            doneEvent = new DoneEvent(model.GetDataBase(), "DoneEventTable");
+        }
+
         public Form CreateFormView()
         {
             View formView=new View();
