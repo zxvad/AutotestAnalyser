@@ -4,6 +4,7 @@
 namespace CSharpMagistrProject.Reading.InputSignal
 {
     //Класс исходного сигнала
+	//нельзя превращать класс в "структуру" из Си. Все свойства должны быть ПРИВАТНЫМИ. получать/устанавливать Необходимо через методы доступа типа get../set...
     public class InputSignal
     {
         public int id;
