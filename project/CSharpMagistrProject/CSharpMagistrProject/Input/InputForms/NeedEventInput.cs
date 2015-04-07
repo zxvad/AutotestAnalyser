@@ -50,6 +50,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 }
                 catch (Exception ex)
                 {
+					//нельзя такого допускать!!!
+					//вместо этого необходимо сторожевые условия использовать
                     // ignored
                 }
             }
@@ -72,6 +74,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 }
                 catch (Exception ex)
                 {
+					//нельзя такого допускать!!!
+					//вместо этого необходимо сторожевые условия использовать
                     // ignored
                 }
             }
@@ -94,6 +98,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 }
                 catch (Exception ex)
                 {
+					//нельзя такого допускать!!!
+					//вместо этого необходимо сторожевые условия использовать
                     // ignored
                 }
             }
@@ -117,6 +123,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 }
                 catch (Exception ex)
                 {
+					//нельзя такого допускать!!!
+					//вместо этого необходимо сторожевые условия использовать
                     // ignored
                 }
             }
