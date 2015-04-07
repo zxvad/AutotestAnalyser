@@ -22,6 +22,7 @@ namespace CSharpMagistrProject.Input.InputForms
 
         private void View_Load(object sender, EventArgs e)
         {
+			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
             try
             {
                 controller.ShowEvents(eventsGridView);
@@ -36,6 +37,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 }
                 catch (Exception ex)
                 {
+					//нельзя такого допускать!!!
+					//вместо этого необходимо сторожевые условия использовать
                     // ignored
                 }
             }
@@ -43,6 +46,7 @@ namespace CSharpMagistrProject.Input.InputForms
 
         private void addButton_Click(object sender, EventArgs e)
         {
+			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
             try
             {
                 controller.AddEvent(textBoxNameToAdd.Text);
@@ -58,6 +62,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 }
                 catch (Exception ex)
                 {
+					//нельзя такого допускать!!!
+					//вместо этого необходимо сторожевые условия использовать
                     // ignored
                 }
             }
@@ -65,6 +71,7 @@ namespace CSharpMagistrProject.Input.InputForms
 
         private void delButton_Click(object sender, EventArgs e)
         {
+			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
             try
             {
                 controller.DelEvent(Convert.ToInt32(textBoxIDToDel.Text));
@@ -80,6 +87,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 }
                 catch (Exception ex)
                 {
+					//нельзя такого допускать!!!
+					//вместо этого необходимо сторожевые условия использовать
                     // ignored
                 }
             }
@@ -87,6 +96,7 @@ namespace CSharpMagistrProject.Input.InputForms
 
         private void updateButton_Click(object sender, EventArgs e)
         {
+			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
             try
             {
                 controller.UpdateNameEvent(Convert.ToInt32(textBoxIDToUpdate.Text), textBoxNameToUpdate.Text);
@@ -103,6 +113,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 }
                 catch (Exception ex)
                 {
+					//нельзя такого допускать!!!
+					//вместо этого необходимо сторожевые условия использовать
                     // ignored
                 }
             }
