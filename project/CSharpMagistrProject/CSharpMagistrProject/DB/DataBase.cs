@@ -53,12 +53,15 @@ namespace CSharpMagistrProject.DB
 	    }
 
         //выполнение SQL запроса (INSERT, UPDATE, DELETE)
+		//зачем передавать OleDbCommand command? Это нарушение инкапсуляции!
 	    public void DoQuery(OleDbCommand command)
 	    {
 	        if (command == null) throw new ArgumentNullException("command");
 	        if (IsConnected)
             {
                 //Если в запросе есть insert/update/delete
+				//1) почему используешь магические числа???????????
+				//2) если команда будет написана не строчными. Тогда алгоритм как сработает?
                 if (command.CommandText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > -1 ||
                     command.CommandText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > -1 ||
                     command.CommandText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > -1)
@@ -79,6 +82,7 @@ namespace CSharpMagistrProject.DB
 	    }
 
         //выполнение SQL запроса (SELECT) и занесение результатов в DataTable
+		//зачем передавать OleDbCommand command? Это нарушение инкапсуляции!
 	    public DataTable DoSelectQuery(OleDbCommand command)
 	    {
 	        if (command == null) throw new ArgumentNullException("command");
@@ -101,6 +105,7 @@ namespace CSharpMagistrProject.DB
 	    }
 
         // Выполнение скалярного SQL запроса
+		//зачем передавать OleDbCommand command? Это нарушение инкапсуляции!
 	    public int DoScalarQuery(OleDbCommand command)
 	    {
 	        if (command == null) throw new ArgumentNullException("command");
