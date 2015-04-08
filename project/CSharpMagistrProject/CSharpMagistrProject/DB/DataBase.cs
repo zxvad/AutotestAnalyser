@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.IO;
-using System.Windows.Forms;
 using CSharpMagistrProject.MVC;
-
 
 namespace CSharpMagistrProject.DB
 {
@@ -13,14 +9,10 @@ namespace CSharpMagistrProject.DB
 	{
 	    private OleDbConnection connection;
 
-	    private bool IsConnected;
-        public bool isConnected
-	    {
-	        get { return IsConnected; }
-	    }
+        public bool IsConnected { get; private set; }
 
 
-	    public DataBase()
+        public DataBase()
 	    {
             IsConnected = false;
 	    }
@@ -28,8 +20,8 @@ namespace CSharpMagistrProject.DB
         //Соединение с БД
 	    public void Connect()
 	    {
-	        string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;";
-	        connectionString += "Data Source=|DataDirectory|\\MagistrDB.accdb";
+	        string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;" +
+	                                  "Data Source=|DataDirectory|\\MagistrDB.accdb";
 
 	        if (IsConnected == false)
 	        {
@@ -54,6 +46,10 @@ namespace CSharpMagistrProject.DB
 
         //выполнение SQL запроса (INSERT, UPDATE, DELETE)
 		//зачем передавать OleDbCommand command? Это нарушение инкапсуляции!
+        //
+        //Вопрос:
+        //Я специально переделывал, чтобы создавать параметризированные запросы (для исключения SQL-инъекций) и передавать их как команду
+        //Переделывать обратно под динамическое создание текста запроса ???
 	    public void DoQuery(OleDbCommand command)
 	    {
 	        if (command == null) throw new ArgumentNullException("command");
@@ -62,9 +58,12 @@ namespace CSharpMagistrProject.DB
                 //Если в запросе есть insert/update/delete
 				//1) почему используешь магические числа???????????
 				//2) если команда будет написана не строчными. Тогда алгоритм как сработает?
-                if (command.CommandText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > -1 ||
-                    command.CommandText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > -1 ||
-                    command.CommandText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > -1)
+                //--------------------------------------
+                //2) все правильно StringComparison.OrdinalIgnoreCase как раз нужен для игнорирования регистра
+                
+                if (command.CommandText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist ||
+                    command.CommandText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist ||
+                    command.CommandText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist)
                 {
                     // выполнение запроса 
                     command.Connection = connection;
@@ -89,7 +88,7 @@ namespace CSharpMagistrProject.DB
 	        if (IsConnected)
 	        {
                 // Если в запросе есть SELECT
-                if (command.CommandText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
+                if (command.CommandText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist)
                 {
                     command.Connection = connection;
                     OleDbDataAdapter dataAdapter = new OleDbDataAdapter(command);
@@ -112,7 +111,7 @@ namespace CSharpMagistrProject.DB
 	        if (IsConnected)
             {
                 // Если в запросе есть SELECT
-                if (command.CommandText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > -1)
+                if (command.CommandText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist)
                 {
                     command.Connection = connection;
                     var resultQuery = command.ExecuteScalar();
