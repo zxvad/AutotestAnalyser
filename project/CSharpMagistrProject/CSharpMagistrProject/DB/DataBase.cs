@@ -50,6 +50,8 @@ namespace CSharpMagistrProject.DB
         //Вопрос:
         //Я специально переделывал, чтобы создавать параметризированные запросы (для исключения SQL-инъекций) и передавать их как команду
         //Переделывать обратно под динамическое создание текста запроса ???
+		//как вариант DataTable getTable(string Asql, Dictionary<string,object> Aparams);
+		//void executeQuery(string Asql, Dictionary<string,object> Aparams); и никаких OleDbCommand в интерфейсе
 	    public void DoQuery(OleDbCommand command)
 	    {
 	        if (command == null) throw new ArgumentNullException("command");
