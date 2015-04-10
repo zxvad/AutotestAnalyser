@@ -20,6 +20,7 @@ namespace CSharpMagistrProject.Input.InputForms
             
         }
 
+		///для чего View_Load если она нигде не используется?
         private void View_Load(object sender, EventArgs e)
         {
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
