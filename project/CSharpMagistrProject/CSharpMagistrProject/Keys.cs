@@ -3,6 +3,7 @@ namespace CSharpMagistrProject
 {
     enum Keys
     {
-        Escape=8
+        Escape=8,
+        NotExist=-1
     }
 }

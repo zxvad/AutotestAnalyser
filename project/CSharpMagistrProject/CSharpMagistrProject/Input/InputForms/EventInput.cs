@@ -23,6 +23,8 @@ namespace CSharpMagistrProject.Input.InputForms
         private void View_Load(object sender, EventArgs e)
         {
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
+            // ВОПРОС:
+            //А как тогда делать? Ведь и при выполнении операций могут возникнуть исключения, и при записи в лог они могут возникнуть
             try
             {
                 controller.ShowEvents(eventsGridView);
@@ -39,7 +41,8 @@ namespace CSharpMagistrProject.Input.InputForms
                 {
 					//нельзя такого допускать!!!
 					//вместо этого необходимо сторожевые условия использовать
-                    // ignored
+                    // ВОПРОС:
+                    //Как условия (if) могут помочь мне в обработке исключений ?
                 }
             }
         }

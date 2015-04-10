@@ -4,17 +4,27 @@
 namespace CSharpMagistrProject.Reading.InputSignal
 {
     //Класс исходного сигнала
-	//нельзя превращать класс в "структуру" из Си. Все свойства должны быть ПРИВАТНЫМИ. получать/устанавливать Необходимо через методы доступа типа get../set...
-    public class InputSignal
+	public class InputSignal
     {
-        public int id;
-        public int ID_SIGNALS_TO_AUTOMATISATION;
+        public InputSignal(int id, int idSignalsToAutomatisation, int idEvent, SignalDescription tagFieldName, bool signalSwitchType, DateTime changeDate)
+        {
+            Id = id;
+            IdSignalsToAutomatisation = idSignalsToAutomatisation;
+            IdEvent = idEvent;
+            SignalSwitchType = signalSwitchType;
+            ChangeDate = changeDate;
+            tagFieldName = TagFieldName;
+        }
+
+        public int Id { get; set; }
+        public int IdSignalsToAutomatisation { get; set; }
 
         //Предполагается, что класс уже содержит idEvent произошедшего события из таблицы EventTable в БД
-        public int idEvent;
+        public int IdEvent { get; set; }
 
-        public SignalDescription TAG_FIELD_NAME;
-        public bool SIGNAL_SWITCH_TYPE;
-        public DateTime CHANGE_DATE;
+        public SignalDescription TagFieldName { get; set; }
+        public bool SignalSwitchType { get; set; }
+        public DateTime ChangeDate { get; set; }
+        
     }
 }
