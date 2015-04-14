@@ -14,13 +14,14 @@ namespace CSharpMagistrProject.Input.InputForms
             set { controller = value; }
         }
 
-        public EventInput()
+        public EventInput(Controller controller)
         {
             InitializeComponent();
-            
+            this.Controller = controller;
         }
 
 		///для чего View_Load если она нигде не используется?
+		/// Используется при загрузке формы EventInput
         private void View_Load(object sender, EventArgs e)
         {
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет

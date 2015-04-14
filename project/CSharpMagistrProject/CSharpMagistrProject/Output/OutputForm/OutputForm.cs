@@ -20,9 +20,11 @@ namespace CSharpMagistrProject.Output.OutputForm
             set { controller = value; }
         }
 
-        public OutputForm()
+        public OutputForm(Controller controller)
         {
             InitializeComponent();
+            this.Controller = controller;
         }
+
     }
 }

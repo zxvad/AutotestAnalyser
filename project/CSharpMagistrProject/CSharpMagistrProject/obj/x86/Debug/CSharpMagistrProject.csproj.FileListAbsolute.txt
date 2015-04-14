@@ -16,8 +16,6 @@ D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMag
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.exe
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.pdb
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.MainForm.resources
-D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Properties.Resources.resources
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\GenerateResource.read.1.tlog
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\GenerateResource.write.1.tlog
 F:\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.exe
@@ -27,3 +25,8 @@ C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.NeedEventInput.resources
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.InputForm.resources
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.EventInput.resources
+D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.InputForm.resources
+D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.NeedEventInput.resources
+D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Input.InputForms.EventInput.resources
+D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.MVC.View.resources
+D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Output.OutputForm.OutputForm.resources

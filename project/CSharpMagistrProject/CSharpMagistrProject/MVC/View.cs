@@ -21,17 +21,16 @@ namespace CSharpMagistrProject.MVC
             set { controller = value; }
         }
 
-        public View()
+        public View(Controller controller)
         {
             InitializeComponent();
+            this.Controller = controller;
         }
 
         private void View_Load(object sender, EventArgs e)
         {
-            InputForm = new InputForm();
-            OutputForm = new OutputForm();
-            InputForm.Controller = this.Controller;
-            OutputForm.Controller = this.Controller;
+            InputForm = new InputForm(this.Controller);
+            OutputForm = new OutputForm(this.Controller);
         }
 
         private void showInputFormButton_Click(object sender, EventArgs e)
