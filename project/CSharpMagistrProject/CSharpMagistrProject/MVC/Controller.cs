@@ -4,6 +4,7 @@ using CSharpMagistrProject.Analysis.DoneEvent;
 using CSharpMagistrProject.Check.CheckSystem;
 using CSharpMagistrProject.Input.Events;
 using CSharpMagistrProject.Input.NeedEvents;
+using CSharpMagistrProject.Output.SelectResult;
 
 namespace CSharpMagistrProject.MVC
 {
@@ -16,19 +17,26 @@ namespace CSharpMagistrProject.MVC
         private NeedEvent listNeedEvent;
         private DoneEvent doneEvent;
 
+        private SelectEvent selectEvent;
+        private SelectNeedEvent selectNeedEvent;
+        private SelectResults selectResults;
+
         public Controller()
         {
             model = new Model();
             listEvent = new Event(model.GetDataBase(), "EventTable");
             listNeedEvent = new NeedEvent(model.GetDataBase(), "EventTable", "NeedEventTable");
             doneEvent = new DoneEvent(model.GetDataBase(), "DoneEventTable");
+
+            selectEvent = new SelectEvent(model.GetDataBase(), "EventTable");
+            selectNeedEvent = new SelectNeedEvent(model.GetDataBase(), "EventTable", "NeedEventTable");
+            selectResults = new SelectResults(model.GetDataBase(), "EventTable", "NeedEventTable", "DoneEventTable");
         }
 
         public Form CreateFormView()
         {
-            View formView=new View();
+            View formView=new View(this);
             view = formView;
-            view.Controller = this;
             return formView;
         }
 
@@ -57,18 +65,20 @@ namespace CSharpMagistrProject.MVC
             listEvent.Update(id,newName);
         }
 
+        // Methods for Select events
+
         public void ShowEvents(DataGridView resultQueryGridView)
         {
-            listEvent.Show(resultQueryGridView);
+            selectEvent.Show(resultQueryGridView);
         }
-
-        // Methods for NeedEvents
 
         public void ShowNeedEvents(DataGridView resultQueryGridView)
         {
-            listNeedEvent.Show(resultQueryGridView);
+            selectNeedEvent.Show(resultQueryGridView);
         }
 
+        // Methods for NeedEvents
+        
         public void AddNeedEvent(int idEvent)
         {
             listNeedEvent.Add(idEvent);

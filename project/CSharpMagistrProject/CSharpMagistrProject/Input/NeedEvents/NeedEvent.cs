@@ -1,7 +1,10 @@
-﻿using System.Data.OleDb;
+﻿using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Windows.Forms;
+using CSharpMagistrProject.Check.CheckSystem;
 using CSharpMagistrProject.DB;
 using CSharpMagistrProject.Input.Events;
+using CSharpMagistrProject.MVC;
 
 namespace CSharpMagistrProject.Input.NeedEvents
 {
@@ -9,28 +12,34 @@ namespace CSharpMagistrProject.Input.NeedEvents
     class NeedEvent
     {
         private Event listEvent;
+        private CheckNeedEvent check;
         private string sourceNeedEventTable;
 
         public NeedEvent(DataBase sourceDataBase, string sourceEventTable, string sourceNeedEventTable)
         {
             listEvent=new Event(sourceDataBase,sourceEventTable);
             this.sourceNeedEventTable = sourceNeedEventTable;
+            check=new CheckNeedEvent(sourceDataBase,sourceNeedEventTable);
         }
         
         //Добавление необходимого события
         public void Add(int idEvent)
         {
-            string queryText = "INSERT INTO " + sourceNeedEventTable + "(id, idEvent) " +
-                               "VALUES (?,?)";
-            OleDbCommand command=new OleDbCommand(queryText);
+            if (check.CheckForUnique(idEvent))
+            {
+                string queryText = "INSERT INTO " + sourceNeedEventTable + "(id, idEvent) " +
+                                   "VALUES (?,?)";
 
-            command.Parameters.Add("id", OleDbType.Integer);
-            command.Parameters.Add("idEvent", OleDbType.Integer);
+                Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
+                parametrsDictionary.Add("id", listEvent.NewId(sourceNeedEventTable));
+                parametrsDictionary.Add("idEvent", idEvent);
 
-            command.Parameters["id"].Value = listEvent.NewId(sourceNeedEventTable);
-            command.Parameters["idEvent"].Value = idEvent;
-
-            listEvent.DataBase.DoQuery(command);
+                listEvent.DataBase.DoQuery(queryText, parametrsDictionary);
+            }
+            else
+            {
+                Controller.ShowMsg("Такое необходимое событие уже существует");
+            }
         }
 
 		//Удаление необходимого события по id
@@ -38,12 +47,10 @@ namespace CSharpMagistrProject.Input.NeedEvents
         {
             string queryText = "DELETE FROM " + sourceNeedEventTable +
                                " WHERE id = ?";
-            OleDbCommand command = new OleDbCommand(queryText);
+            Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
+            parametrsDictionary.Add("id", id);
 
-            command.Parameters.Add("id", OleDbType.Integer);
-            command.Parameters["id"].Value = id;
-
-            listEvent.DataBase.DoQuery(command);
+            listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
         }
 
         //Изменение записи о событии
@@ -52,26 +59,12 @@ namespace CSharpMagistrProject.Input.NeedEvents
             string queryText = "UPDATE " + sourceNeedEventTable +
                                " SET idEvent = ?" +
                                " WHERE id = ?";
-            OleDbCommand command = new OleDbCommand(queryText);
+            Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
+            parametrsDictionary.Add("idEvent", newIdEvent);
+            parametrsDictionary.Add("id", id);
 
-            command.Parameters.Add("idEvent", OleDbType.Integer);
-            command.Parameters.Add("id", OleDbType.Integer);
-
-            command.Parameters["idEvent"].Value = newIdEvent;
-            command.Parameters["id"].Value = id;
-
-            listEvent.DataBase.DoQuery(command);
+            listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
         }
 
-        //Показ всех необходимых событий
-        public void Show(DataGridView receiverGridView)
-        {
-            string queryText = "SELECT NeedEvent.id, Event.name " +
-                               "FROM (" + sourceNeedEventTable + " NeedEvent " +
-                               "LEFT JOIN " + listEvent.SourceEventTable + " Event " +
-                               "ON NeedEvent.idEvent = Event.id)";
-            OleDbCommand command = new OleDbCommand(queryText);
-            receiverGridView.DataSource = listEvent.DataBase.DoSelectQuery(command);
-        }
     }
 }

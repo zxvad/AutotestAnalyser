@@ -1,4 +1,5 @@
-﻿using System.Data.OleDb;
+﻿using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Windows.Forms;
 using CSharpMagistrProject.Check.CheckSystem;
 using CSharpMagistrProject.DB;
@@ -35,15 +36,14 @@ namespace CSharpMagistrProject.Input.Events
         public int NewId(string sourceTable)
         {
             string queryText = "SELECT MAX(id) FROM " + sourceTable;
-            OleDbCommand command = new OleDbCommand(queryText);
 
-            int result = dataBase.DoScalarQuery(command);
-            if (result != -1)
+            int result = dataBase.DoScalarQuery(queryText);
+            if (result != (int) Keys.Error)
             {
                 return ++result;
             }
 
-            return -1;
+            return (int)Keys.Error;
         }
 
         //Добавление события
@@ -53,16 +53,11 @@ namespace CSharpMagistrProject.Input.Events
             {
                 string queryText = "INSERT INTO " + sourceEventTable + " (id, name) " +
                                    "VALUES (?, ?)";
+                Dictionary<string,object> parametrsDictionary=new Dictionary<string, object>();
+                parametrsDictionary.Add("newId", NewId(sourceEventTable));
+                parametrsDictionary.Add("nameEvent", nameEvent);
 
-                OleDbCommand command = new OleDbCommand(queryText);
-
-                command.Parameters.Add("newId", OleDbType.Integer);
-                command.Parameters.Add("nameEvent", OleDbType.VarChar);
-
-                command.Parameters["newId"].Value = NewId(sourceEventTable);
-                command.Parameters["nameEvent"].Value = nameEvent;
-
-                dataBase.DoQuery(command);
+                dataBase.DoQuery(queryText, parametrsDictionary);
             }
             else
             {
@@ -76,12 +71,11 @@ namespace CSharpMagistrProject.Input.Events
         {
             string queryText= "DELETE FROM " + sourceEventTable +
                               " WHERE id = ?";
-            OleDbCommand command = new OleDbCommand(queryText);
 
-            command.Parameters.Add("id", OleDbType.Integer);
-            command.Parameters["id"].Value = id;
+            Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
+            parametrsDictionary.Add("id", id);
             
-            dataBase.DoQuery(command);
+            dataBase.DoQuery(queryText,parametrsDictionary);
         }
 
 		//Изменение записи о событии
@@ -90,23 +84,11 @@ namespace CSharpMagistrProject.Input.Events
             string queryText = "UPDATE " + sourceEventTable +
                                " SET name = ?" +
                                " WHERE id = ?";
-            OleDbCommand command = new OleDbCommand(queryText);
+            Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
+            parametrsDictionary.Add("newName", newName);
+            parametrsDictionary.Add("id", id);
 
-            command.Parameters.Add("newName", OleDbType.VarChar);
-            command.Parameters.Add("id", OleDbType.Integer);
-
-            command.Parameters["newName"].Value = newName;
-            command.Parameters["id"].Value = id;
-
-            dataBase.DoQuery(command);
-        }
-
-		//Вывод списка событий
-        public  void Show(DataGridView receiverGridView)
-        {
-            string queryText = "SELECT * FROM " + sourceEventTable;
-            OleDbCommand command = new OleDbCommand(queryText);
-            receiverGridView.DataSource = dataBase.DoSelectQuery(command);
+            dataBase.DoQuery(queryText, parametrsDictionary);
         }
     }
 }

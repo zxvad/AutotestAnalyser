@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.OleDb;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using CSharpMagistrProject.DB;
 using CSharpMagistrProject.Reading.InputSignal;
-
 
 namespace CSharpMagistrProject.Analysis.DoneEvent
 {
@@ -25,8 +20,7 @@ namespace CSharpMagistrProject.Analysis.DoneEvent
         public void Clear()
         {
             string queryText = "DELETE FROM " + sourceDoneEventTable;
-            OleDbCommand command = new OleDbCommand(queryText);
-            dataBase.DoQuery(command);
+            dataBase.DoQuery(queryText);
         }
 
         public void Add(InputSignal inputSignal)
@@ -34,21 +28,14 @@ namespace CSharpMagistrProject.Analysis.DoneEvent
             string queryText = "INSERT INTO " + sourceDoneEventTable + 
                                 "(id, idEvent, ID_SIGNALS_TO_AUTOMATISATION, SIGNAL_SWITCH_TYPE, CHANGE_DATE) " +
                                 "VALUES (?,?,?,?,?)";
-            OleDbCommand command = new OleDbCommand(queryText);
-
-            command.Parameters.Add("id", OleDbType.Integer);
-            command.Parameters.Add("idEvent", OleDbType.Integer);
-            command.Parameters.Add("ID_SIGNALS_TO_AUTOMATISATION", OleDbType.Integer);
-            command.Parameters.Add("SIGNAL_SWITCH_TYPE", OleDbType.Boolean);
-            command.Parameters.Add("CHANGE_DATE", OleDbType.Date);
-
-            command.Parameters["id"].Value = inputSignal.id;
-            command.Parameters["idEvent"].Value = inputSignal.idEvent;
-            command.Parameters["ID_SIGNALS_TO_AUTOMATISATION"].Value = inputSignal.ID_SIGNALS_TO_AUTOMATISATION;
-            command.Parameters["SIGNAL_SWITCH_TYPE"].Value = inputSignal.SIGNAL_SWITCH_TYPE;
-            command.Parameters["CHANGE_DATE"].Value = inputSignal.CHANGE_DATE;
+            Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
+            parametrsDictionary.Add("id", inputSignal.Id);
+            parametrsDictionary.Add("idEvent", inputSignal.IdEvent);
+            parametrsDictionary.Add("ID_SIGNALS_TO_AUTOMATISATION", inputSignal.IdSignalsToAutomatisation);
+            parametrsDictionary.Add("SIGNAL_SWITCH_TYPE", inputSignal.SignalSwitchType);
+            parametrsDictionary.Add("CHANGE_DATE", inputSignal.ChangeDate);
             
-            dataBase.DoQuery(command);
+            dataBase.DoQuery(queryText,parametrsDictionary);
         }
     }
 }

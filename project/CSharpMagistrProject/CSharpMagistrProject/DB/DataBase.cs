@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using CSharpMagistrProject.MVC;
@@ -45,30 +46,24 @@ namespace CSharpMagistrProject.DB
 	    }
 
         //выполнение SQL запроса (INSERT, UPDATE, DELETE)
-		//зачем передавать OleDbCommand command? Это нарушение инкапсуляции!
-        //
-        //Вопрос:
-        //Я специально переделывал, чтобы создавать параметризированные запросы (для исключения SQL-инъекций) и передавать их как команду
-        //Переделывать обратно под динамическое создание текста запроса ???
-		//как вариант DataTable getTable(string Asql, Dictionary<string,object> Aparams);
-		//void executeQuery(string Asql, Dictionary<string,object> Aparams); и никаких OleDbCommand в интерфейсе
-	    public void DoQuery(OleDbCommand command)
+	    public void DoQuery(string query, Dictionary<string,object> parametrsDictionary )
 	    {
-	        if (command == null) throw new ArgumentNullException("command");
 	        if (IsConnected)
             {
                 //Если в запросе есть insert/update/delete
-				//1) почему используешь магические числа???????????
-				//2) если команда будет написана не строчными. Тогда алгоритм как сработает?
-                //--------------------------------------
-                //2) все правильно StringComparison.OrdinalIgnoreCase как раз нужен для игнорирования регистра
-                
-                if (command.CommandText.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist ||
-                    command.CommandText.IndexOf("update", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist ||
-                    command.CommandText.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist)
+                if (query.IndexOf("insert", StringComparison.OrdinalIgnoreCase) > (int)Keys.NotExist ||
+                    query.IndexOf("update", StringComparison.OrdinalIgnoreCase) > (int)Keys.NotExist ||
+                    query.IndexOf("delete", StringComparison.OrdinalIgnoreCase) > (int)Keys.NotExist)
                 {
-                    // выполнение запроса 
-                    command.Connection = connection;
+                    OleDbCommand command = new OleDbCommand(query, connection);
+                    // добавляем параметры в запрос
+                    if (parametrsDictionary != null)
+                    {
+                        foreach (KeyValuePair<string, object> keyValuePair in parametrsDictionary)
+                        {
+                            command.Parameters.AddWithValue(keyValuePair.Key,keyValuePair.Value);
+                        }
+                    }
                     command.ExecuteNonQuery();
                 }
                 else
@@ -82,18 +77,29 @@ namespace CSharpMagistrProject.DB
             }
 	    }
 
+        public void DoQuery(string query)
+        {
+            DoQuery(query, null);
+        }
+
         //выполнение SQL запроса (SELECT) и занесение результатов в DataTable
-		//зачем передавать OleDbCommand command? Это нарушение инкапсуляции!
-	    public DataTable DoSelectQuery(OleDbCommand command)
+        public DataTable DoSelectQuery(string query, Dictionary<string, object> parametrsDictionary)
 	    {
-	        if (command == null) throw new ArgumentNullException("command");
 	        if (IsConnected)
 	        {
                 // Если в запросе есть SELECT
-                if (command.CommandText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist)
+                if (query.IndexOf("select", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist)
                 {
-                    command.Connection = connection;
-                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(command);
+                    OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query,connection);
+                    // добавляем параметры в запрос
+                    if (parametrsDictionary != null)
+                    {
+                        foreach (KeyValuePair<string, object> keyValuePair in parametrsDictionary)
+                        {
+                            dataAdapter.SelectCommand.Parameters.AddWithValue(keyValuePair.Key,keyValuePair.Value);
+                        }
+                    }
+                    
                     DataTable resultQueryTable = new DataTable();
                     dataAdapter.Fill(resultQueryTable);
 	                return resultQueryTable;
@@ -105,25 +111,41 @@ namespace CSharpMagistrProject.DB
 	        return null;
 	    }
 
+        public DataTable DoSelectQuery(string query)
+        {
+            return DoSelectQuery(query, null);
+        }
+
         // Выполнение скалярного SQL запроса
-		//зачем передавать OleDbCommand command? Это нарушение инкапсуляции!
-	    public int DoScalarQuery(OleDbCommand command)
+        public int DoScalarQuery(string query, Dictionary<string, object> parametrsDictionary)
 	    {
-	        if (command == null) throw new ArgumentNullException("command");
 	        if (IsConnected)
             {
                 // Если в запросе есть SELECT
-                if (command.CommandText.IndexOf("select", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist)
+                if (query.IndexOf("select", StringComparison.OrdinalIgnoreCase) > (int) Keys.NotExist)
                 {
-                    command.Connection = connection;
+                    OleDbCommand command = new OleDbCommand(query, connection);
+                    // добавляем параметры в запрос
+                    if (parametrsDictionary != null)
+                    {
+                        foreach (KeyValuePair<string, object> keyValuePair in parametrsDictionary)
+                        {
+                            command.Parameters.AddWithValue(keyValuePair.Key, keyValuePair.Value);
+                        }
+                    }
                     var resultQuery = command.ExecuteScalar();
                     return Convert.ToInt32(resultQuery);
                 }
                 Controller.ShowMsg("Неверный запрос");
-                return -1;
+                return (int) Keys.Error;
             }
 	        Controller.ShowMsg("Нет соединения с БД");
-	        return -1;
+            return (int)Keys.Error;
 	    }
+
+        public int DoScalarQuery(string query)
+        {
+            return DoScalarQuery(query, null);
+        }
 	}
 }

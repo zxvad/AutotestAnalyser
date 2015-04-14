@@ -1,10 +1,11 @@
 ﻿
+using System.Collections.Generic;
 using System.Data.OleDb;
 using CSharpMagistrProject.DB;
 
 namespace CSharpMagistrProject.Check.CheckSystem
 {
-    class CheckEvent
+    internal class CheckEvent
     {
         private DataBase dataBase;
         private string sourceEventTable;
@@ -14,9 +15,10 @@ namespace CSharpMagistrProject.Check.CheckSystem
             this.dataBase = dataBase;
             this.sourceEventTable = sourceEventTable;
         }
+
         public void CheckForCorrect()
         {
-            
+
         }
 
         public bool CheckForUnique(string nameEvent)
@@ -25,15 +27,12 @@ namespace CSharpMagistrProject.Check.CheckSystem
                                "FROM " + sourceEventTable +
                                " WHERE UCASE(name)=UCASE(?)";
 
-            OleDbCommand command = new OleDbCommand(queryText);
-            command.Parameters.Add("nameEvent", OleDbType.VarChar);
-            command.Parameters["nameEvent"].Value = nameEvent;
-            if (dataBase.DoScalarQuery(command) > 0)
+            Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
+            parametrsDictionary.Add("nameEvent", nameEvent);
+
+            if (dataBase.DoScalarQuery(queryText, parametrsDictionary) > 0)
                 return false;
             return true;
-
         }
-
-
     }
 }
