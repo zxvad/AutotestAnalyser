@@ -9,8 +9,26 @@ namespace CSharpMagistrProject.DB
     public class DataBase
 	{
 	    private OleDbConnection connection;
+        private string _eventTable = "EventTable";
+        private string _needEventTable = "NeedEventTable";
+        private string _doneEventTable = "DoneEventTable";
 
         public bool IsConnected { get; private set; }
+
+        public string EventTable
+        {
+            get { return _eventTable; }
+        }
+
+        public string NeedEventTable
+        {
+            get { return _needEventTable; }
+        }
+
+        public string DoneEventTable
+        {
+            get { return _doneEventTable; }
+        }
 
 
         public DataBase()

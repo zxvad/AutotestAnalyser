@@ -5,19 +5,13 @@ namespace CSharpMagistrProject.MVC
 {
     public class Model
     {
-        private DataBase dataBase;
+        public DataBase DataBase { get; private set; }
         public LogFile logFile;
 
         public Model()
         {
-            dataBase = new DataBase();
+            DataBase = new DataBase();
             logFile = new LogFile();
         }
-
-        public DataBase GetDataBase()
-        {
-            return dataBase;
-        }
-
     }
 }

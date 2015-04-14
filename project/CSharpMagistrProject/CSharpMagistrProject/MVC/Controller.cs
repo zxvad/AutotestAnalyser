@@ -24,13 +24,14 @@ namespace CSharpMagistrProject.MVC
         public Controller()
         {
             model = new Model();
-            listEvent = new Event(model.GetDataBase(), "EventTable");
-            listNeedEvent = new NeedEvent(model.GetDataBase(), "EventTable", "NeedEventTable");
-            doneEvent = new DoneEvent(model.GetDataBase(), "DoneEventTable");
 
-            selectEvent = new SelectEvent(model.GetDataBase(), "EventTable");
-            selectNeedEvent = new SelectNeedEvent(model.GetDataBase(), "EventTable", "NeedEventTable");
-            selectResults = new SelectResults(model.GetDataBase(), "EventTable", "NeedEventTable", "DoneEventTable");
+            listEvent = new Event(model.DataBase, model.DataBase.EventTable);
+            listNeedEvent = new NeedEvent(model.DataBase, model.DataBase.EventTable, model.DataBase.NeedEventTable);
+            doneEvent = new DoneEvent(model.DataBase, model.DataBase.DoneEventTable);
+
+            selectEvent = new SelectEvent(model.DataBase, model.DataBase.EventTable);
+            selectNeedEvent = new SelectNeedEvent(model.DataBase, model.DataBase.EventTable, model.DataBase.NeedEventTable);
+            selectResults = new SelectResults(model.DataBase, model.DataBase.EventTable, model.DataBase.NeedEventTable, model.DataBase.DoneEventTable);
         }
 
         public Form CreateFormView()
