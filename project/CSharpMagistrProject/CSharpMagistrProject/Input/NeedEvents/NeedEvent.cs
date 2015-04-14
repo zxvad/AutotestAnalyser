@@ -66,5 +66,10 @@ namespace CSharpMagistrProject.Input.NeedEvents
             listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
         }
 
+        //Удаление всех необходимых событий из БД
+        public void Clear()
+        {
+            listEvent.DataBase.Clear(sourceNeedEventTable);
+        }
     }
 }

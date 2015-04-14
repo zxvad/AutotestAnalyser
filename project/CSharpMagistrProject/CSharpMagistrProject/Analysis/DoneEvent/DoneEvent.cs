@@ -16,13 +16,6 @@ namespace CSharpMagistrProject.Analysis.DoneEvent
             this.sourceDoneEventTable = sourceDoneEventTable;
         }
 
-        //Очистка всех произошедших событий в БД
-        public void Clear()
-        {
-            string queryText = "DELETE FROM " + sourceDoneEventTable;
-            dataBase.DoQuery(queryText);
-        }
-
         public void Add(InputSignal inputSignal)
         {
             string queryText = "INSERT INTO " + sourceDoneEventTable + 
@@ -36,6 +29,12 @@ namespace CSharpMagistrProject.Analysis.DoneEvent
             parametrsDictionary.Add("CHANGE_DATE", inputSignal.ChangeDate);
             
             dataBase.DoQuery(queryText,parametrsDictionary);
+        }
+
+        //Удаление всех произошедших событий в БД
+        public void Clear()
+        {
+            dataBase.Clear(sourceDoneEventTable);
         }
     }
 }

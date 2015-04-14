@@ -165,5 +165,12 @@ namespace CSharpMagistrProject.DB
         {
             return DoScalarQuery(query, null);
         }
+
+        // Очистка всех записей указанной таблицы
+        public void Clear(string tableToClear)
+        {
+            string queryText = "DELETE FROM " + tableToClear;
+            DoQuery(queryText);
+        }
 	}
 }

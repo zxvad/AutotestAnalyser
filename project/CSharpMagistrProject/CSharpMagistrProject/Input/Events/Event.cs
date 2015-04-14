@@ -90,5 +90,11 @@ namespace CSharpMagistrProject.Input.Events
 
             dataBase.DoQuery(queryText, parametrsDictionary);
         }
+        
+        //Удаление всех событий из БД
+        public void Clear()
+        {
+            dataBase.Clear(SourceEventTable);
+        }
     }
 }
