@@ -95,6 +95,13 @@ namespace CSharpMagistrProject.MVC
             listNeedEvent.Update(id,newIdEvent);
         }
 
+        // Methods for Results
+
+        public void ShowResults(DataGridView resultQueryGridView)
+        {
+            selectResults.Show(resultQueryGridView);
+        }
+
         // Methods for Logs
 
         public void AddToLog(Exception exception)

@@ -26,7 +26,7 @@ namespace CSharpMagistrProject.Output.SelectResult
         {
             
             ProcessResultTable();
-            string queryText = "SELECT Result.id, Event.name , Result.isDone as Выполнено" +
+            string queryText = "SELECT Result.id, Event.name , Result.isDone as Выполнено " +
                    "FROM (" + sourceResultTable + " Result " +
                    "LEFT JOIN " + sourceEventTable + " Event " +
                    "ON Result.idEvent = Event.id)";
@@ -37,7 +37,7 @@ namespace CSharpMagistrProject.Output.SelectResult
         private void ProcessResultTable()
         {
             // Очистка таблицы
-            dataBase.Clear(sourceDoneEventTable);
+            dataBase.Clear(sourceResultTable);
 
             // Копирование записей с необходимыми событиями в результирующую таблицу
             string queryText = "INSERT INTO " + sourceResultTable + "(id, idEvent) " +

@@ -31,12 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.eventGridView = new System.Windows.Forms.DataGridView();
+            this.needEventGridView = new System.Windows.Forms.DataGridView();
+            this.resultGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.eventGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.needEventGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -66,46 +66,48 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Результаты";
             // 
-            // dataGridView1
+            // eventGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 69);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(199, 389);
-            this.dataGridView1.TabIndex = 3;
+            this.eventGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.eventGridView.Location = new System.Drawing.Point(12, 69);
+            this.eventGridView.Name = "eventGridView";
+            this.eventGridView.Size = new System.Drawing.Size(232, 389);
+            this.eventGridView.TabIndex = 3;
             // 
-            // dataGridView2
+            // needEventGridView
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(270, 69);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(220, 389);
-            this.dataGridView2.TabIndex = 4;
+            this.needEventGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.needEventGridView.Location = new System.Drawing.Point(270, 69);
+            this.needEventGridView.Name = "needEventGridView";
+            this.needEventGridView.Size = new System.Drawing.Size(242, 389);
+            this.needEventGridView.TabIndex = 4;
             // 
-            // dataGridView3
+            // resultGridView
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(550, 69);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(238, 389);
-            this.dataGridView3.TabIndex = 5;
+            this.resultGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.resultGridView.Location = new System.Drawing.Point(528, 69);
+            this.resultGridView.Name = "resultGridView";
+            this.resultGridView.Size = new System.Drawing.Size(387, 389);
+            this.resultGridView.TabIndex = 5;
             // 
             // OutputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 497);
-            this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(928, 497);
+            this.Controls.Add(this.resultGridView);
+            this.Controls.Add(this.needEventGridView);
+            this.Controls.Add(this.eventGridView);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "OutputForm";
             this.Text = "OutputForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OutputForm_FormClosing);
+            this.Load += new System.EventHandler(this.OutputForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.eventGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.needEventGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,8 +118,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView eventGridView;
+        private System.Windows.Forms.DataGridView needEventGridView;
+        private System.Windows.Forms.DataGridView resultGridView;
     }
 }
