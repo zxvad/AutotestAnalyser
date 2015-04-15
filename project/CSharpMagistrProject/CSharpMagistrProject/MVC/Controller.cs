@@ -31,7 +31,7 @@ namespace CSharpMagistrProject.MVC
 
             selectEvent = new SelectEvent(model.DataBase, model.DataBase.EventTable);
             selectNeedEvent = new SelectNeedEvent(model.DataBase, model.DataBase.EventTable, model.DataBase.NeedEventTable);
-            selectResults = new SelectResults(model.DataBase, model.DataBase.EventTable, model.DataBase.NeedEventTable, model.DataBase.DoneEventTable);
+            selectResults = new SelectResults(model.DataBase, model.DataBase.EventTable, model.DataBase.NeedEventTable, model.DataBase.DoneEventTable,model.DataBase.ResultTable);
         }
 
         public Form CreateFormView()
