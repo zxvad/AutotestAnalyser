@@ -12,6 +12,7 @@ namespace CSharpMagistrProject.DB
         private string _eventTable = "EventTable";
         private string _needEventTable = "NeedEventTable";
         private string _doneEventTable = "DoneEventTable";
+        private string _resultTable = "ResultTable";
 
         public bool IsConnected { get; private set; }
 
@@ -28,6 +29,11 @@ namespace CSharpMagistrProject.DB
         public string DoneEventTable
         {
             get { return _doneEventTable; }
+        }
+
+        public string ResultTable
+        {
+            get { return _resultTable; }
         }
 
 
