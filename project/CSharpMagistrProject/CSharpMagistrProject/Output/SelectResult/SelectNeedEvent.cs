@@ -7,15 +7,15 @@ namespace CSharpMagistrProject.Output.SelectResult
 {
     public class SelectNeedEvent
     {
-        private DataBase dataBase;
-        private string sourceEventTable;
-        private string sourceNeedEventTable;
+        private readonly DataBase _dataBase;
+        private readonly string _sourceEventTable;
+        private readonly string _sourceNeedEventTable;
 
         public SelectNeedEvent(DataBase sourceDataBase, string sourceEventTable, string sourceNeedEventTable)
         {
-            dataBase = sourceDataBase;
-            this.sourceEventTable = sourceEventTable;
-            this.sourceNeedEventTable = sourceNeedEventTable;
+            _dataBase = sourceDataBase;
+            _sourceEventTable = sourceEventTable;
+            _sourceNeedEventTable = sourceNeedEventTable;
         }
 
 
@@ -23,10 +23,10 @@ namespace CSharpMagistrProject.Output.SelectResult
         public void Show(DataGridView receiverGridView)
         {
             string queryText = "SELECT NeedEvent.id, Event.name " +
-                               "FROM (" + sourceNeedEventTable + " NeedEvent " +
-                               "LEFT JOIN " + sourceEventTable + " Event " +
+                               "FROM (" + _sourceNeedEventTable + " NeedEvent " +
+                               "LEFT JOIN " + _sourceEventTable + " Event " +
                                "ON NeedEvent.idEvent = Event.id)";
-            receiverGridView.DataSource = dataBase.DoSelectQuery(queryText);
+            receiverGridView.DataSource = _dataBase.DoSelectQuery(queryText);
         }
     }
 }

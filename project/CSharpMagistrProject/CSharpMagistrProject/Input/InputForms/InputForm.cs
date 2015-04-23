@@ -5,30 +5,25 @@ namespace CSharpMagistrProject.Input.InputForms
 {
     public partial class InputForm : Form, IView
     {
-        public EventInput EventInputForm;
-        public NeedEventInput NeedEventInputForm;
+        private EventInput _eventInputForm;
+        private NeedEventInput _needEventInputForm;
 
-        private Controller controller;
-        public Controller Controller
-        {
-            get { return controller; }
-            set { controller = value; }
-        }
+        public Controller Controller { get; set; }
 
         public InputForm(Controller controller)
         {
             InitializeComponent();
-            this.Controller = controller;
+            Controller = controller;
         }
 
         private void showEventInputFormButton_Click(object sender, System.EventArgs e)
         {
-            EventInputForm.Show();
+            _eventInputForm.Show();
         }
 
         private void showNeedEventInputFormButton_Click(object sender, System.EventArgs e)
         {
-            NeedEventInputForm.Show();
+            _needEventInputForm.Show();
         }
 
         private void InputForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -42,8 +37,8 @@ namespace CSharpMagistrProject.Input.InputForms
 
         private void InputForm_Load(object sender, System.EventArgs e)
         {
-            NeedEventInputForm = new NeedEventInput(this.Controller);
-            EventInputForm = new EventInput(this.Controller);
+            _needEventInputForm = new NeedEventInput(Controller);
+            _eventInputForm = new EventInput(Controller);
         }
     }
 }

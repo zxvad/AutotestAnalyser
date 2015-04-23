@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.OleDb;
-using System.Windows.Forms;
 using CSharpMagistrProject.Check.CheckSystem;
 using CSharpMagistrProject.DB;
 using CSharpMagistrProject.MVC;
@@ -10,26 +8,16 @@ namespace CSharpMagistrProject.Input.Events
     //Список событий
     class Event
     {
-        private string sourceEventTable;
-        public string SourceEventTable
-        {
-            get { return sourceEventTable; }
-        }
-
-        private CheckEvent check;
-
-        private DataBase dataBase;
-        public DataBase DataBase
-        {
-            get { return dataBase; }
-        }
+        private readonly CheckEvent _check;
+        private string SourceEventTable { get; set; }
+        public DataBase DataBase { get; set; }
 
         public Event(DataBase sourceDataBase, string sourceEventTable)
         {
-            dataBase = sourceDataBase;
-            dataBase.Connect();
-            this.sourceEventTable = sourceEventTable;
-            check = new CheckEvent(dataBase, sourceEventTable);
+            DataBase = sourceDataBase;
+            DataBase.Connect();
+            SourceEventTable = sourceEventTable;
+            _check = new CheckEvent(DataBase, sourceEventTable);
         }
 
         //Возврщает новый id для вставки записи в БД
@@ -37,7 +25,7 @@ namespace CSharpMagistrProject.Input.Events
         {
             string queryText = "SELECT MAX(id) FROM " + sourceTable;
 
-            int result = dataBase.DoScalarQuery(queryText);
+            int result = DataBase.DoScalarQuery(queryText);
             if (result != (int) Keys.Error)
             {
                 return ++result;
@@ -49,15 +37,15 @@ namespace CSharpMagistrProject.Input.Events
         //Добавление события
         public void Add(string nameEvent)
         {
-            if (check.CheckForUnique(nameEvent))
+            if (_check.CheckForUnique(nameEvent))
             {
-                string queryText = "INSERT INTO " + sourceEventTable + " (id, name) " +
+                string queryText = "INSERT INTO " + SourceEventTable + " (id, name) " +
                                    "VALUES (?, ?)";
                 Dictionary<string,object> parametrsDictionary=new Dictionary<string, object>();
-                parametrsDictionary.Add("newId", NewId(sourceEventTable));
+                parametrsDictionary.Add("newId", NewId(SourceEventTable));
                 parametrsDictionary.Add("nameEvent", nameEvent);
 
-                dataBase.DoQuery(queryText, parametrsDictionary);
+                DataBase.DoQuery(queryText, parametrsDictionary);
             }
             else
             {
@@ -69,32 +57,32 @@ namespace CSharpMagistrProject.Input.Events
         //Удаление необходимого события по id
         public void Del(int id)
         {
-            string queryText= "DELETE FROM " + sourceEventTable +
+            string queryText= "DELETE FROM " + SourceEventTable +
                               " WHERE id = ?";
 
             Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
             parametrsDictionary.Add("id", id);
             
-            dataBase.DoQuery(queryText,parametrsDictionary);
+            DataBase.DoQuery(queryText,parametrsDictionary);
         }
 
 		//Изменение записи о событии
         public void Update(int id, string newName)
         {
-            string queryText = "UPDATE " + sourceEventTable +
+            string queryText = "UPDATE " + SourceEventTable +
                                " SET name = ?" +
                                " WHERE id = ?";
             Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
             parametrsDictionary.Add("newName", newName);
             parametrsDictionary.Add("id", id);
 
-            dataBase.DoQuery(queryText, parametrsDictionary);
+            DataBase.DoQuery(queryText, parametrsDictionary);
         }
         
         //Удаление всех событий из БД
         public void Clear()
         {
-            dataBase.Clear(SourceEventTable);
+            DataBase.Clear(SourceEventTable);
         }
     }
 }

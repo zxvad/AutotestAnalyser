@@ -1,17 +1,17 @@
-﻿using System.IO;
-using CSharpMagistrProject.DB;
+﻿using CSharpMagistrProject.DB;
 
 namespace CSharpMagistrProject.MVC
 {
     public class Model
     {
         public DataBase DataBase { get; private set; }
-        public LogFile logFile;
+
+        public LogFile LogFile { get; private set; }
 
         public Model()
         {
             DataBase = new DataBase();
-            logFile = new LogFile();
+            LogFile = new LogFile();
         }
     }
 }

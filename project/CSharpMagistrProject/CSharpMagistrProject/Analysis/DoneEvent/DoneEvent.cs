@@ -7,18 +7,18 @@ namespace CSharpMagistrProject.Analysis.DoneEvent
     //Совершенные события
     class DoneEvent
     {
-        private DataBase dataBase;
-        private string sourceDoneEventTable;
+        private readonly DataBase _dataBase;
+        private readonly string _sourceDoneEventTable;
 
         public DoneEvent(DataBase dataBase, string sourceDoneEventTable)
         {
-            this.dataBase = dataBase;
-            this.sourceDoneEventTable = sourceDoneEventTable;
+            _dataBase = dataBase;
+            _sourceDoneEventTable = sourceDoneEventTable;
         }
 
         public void Add(InputSignal inputSignal)
         {
-            string queryText = "INSERT INTO " + sourceDoneEventTable + 
+            string queryText = "INSERT INTO " + _sourceDoneEventTable + 
                                 "(id, idEvent, ID_SIGNALS_TO_AUTOMATISATION, SIGNAL_SWITCH_TYPE, CHANGE_DATE) " +
                                 "VALUES (?,?,?,?,?)";
             Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
@@ -28,13 +28,13 @@ namespace CSharpMagistrProject.Analysis.DoneEvent
             parametrsDictionary.Add("SIGNAL_SWITCH_TYPE", inputSignal.SignalSwitchType);
             parametrsDictionary.Add("CHANGE_DATE", inputSignal.ChangeDate);
             
-            dataBase.DoQuery(queryText,parametrsDictionary);
+            _dataBase.DoQuery(queryText,parametrsDictionary);
         }
 
         //Удаление всех произошедших событий в БД
         public void Clear()
         {
-            dataBase.Clear(sourceDoneEventTable);
+            _dataBase.Clear(_sourceDoneEventTable);
         }
     }
 }

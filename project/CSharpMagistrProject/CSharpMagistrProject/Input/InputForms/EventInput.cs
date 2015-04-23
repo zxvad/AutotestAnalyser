@@ -7,20 +7,14 @@ namespace CSharpMagistrProject.Input.InputForms
     
     public partial class EventInput : Form, IView
     {
-        private Controller controller;
-        public Controller Controller
-        {
-            get { return controller; }
-            set { controller = value; }
-        }
+        public Controller Controller { get; set; }
 
         public EventInput(Controller controller)
         {
             InitializeComponent();
-            this.Controller = controller;
+            Controller = controller;
         }
 
-		///для чего View_Load если она нигде не используется?
 		/// Используется при загрузке формы EventInput
         private void View_Load(object sender, EventArgs e)
         {
@@ -29,7 +23,7 @@ namespace CSharpMagistrProject.Input.InputForms
             //А как тогда делать? Ведь и при выполнении операций могут возникнуть исключения, и при записи в лог они могут возникнуть
             try
             {
-                controller.ShowEvents(eventsGridView);
+                Controller.ShowEvents(eventsGridView);
 
             }
             catch (Exception exception)
@@ -37,7 +31,7 @@ namespace CSharpMagistrProject.Input.InputForms
                 Controller.ShowMsg(exception.Message);
                 try
                 {
-                    controller.AddToLog(exception);
+                    Controller.AddToLog(exception);
                 }
                 catch (Exception ex)
                 {
@@ -54,8 +48,8 @@ namespace CSharpMagistrProject.Input.InputForms
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
             try
             {
-                controller.AddEvent(textBoxNameToAdd.Text);
-                controller.ShowEvents(eventsGridView);
+                Controller.AddEvent(textBoxNameToAdd.Text);
+                Controller.ShowEvents(eventsGridView);
                 textBoxNameToAdd.Clear();
             }
             catch (Exception exception)
@@ -63,7 +57,7 @@ namespace CSharpMagistrProject.Input.InputForms
                 Controller.ShowMsg(exception.Message);
                 try
                 {
-                    controller.AddToLog(exception);
+                    Controller.AddToLog(exception);
                 }
                 catch (Exception ex)
                 {
@@ -79,8 +73,8 @@ namespace CSharpMagistrProject.Input.InputForms
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
             try
             {
-                controller.DelEvent(Convert.ToInt32(textBoxIDToDel.Text));
-                controller.ShowEvents(eventsGridView);
+                Controller.DelEvent(Convert.ToInt32(textBoxIDToDel.Text));
+                Controller.ShowEvents(eventsGridView);
                 textBoxIDToDel.Clear();
             }
             catch (Exception exception)
@@ -88,7 +82,7 @@ namespace CSharpMagistrProject.Input.InputForms
                 Controller.ShowMsg(exception.Message);
                 try
                 {
-                    controller.AddToLog(exception);
+                    Controller.AddToLog(exception);
                 }
                 catch (Exception ex)
                 {
@@ -104,8 +98,8 @@ namespace CSharpMagistrProject.Input.InputForms
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
             try
             {
-                controller.UpdateNameEvent(Convert.ToInt32(textBoxIDToUpdate.Text), textBoxNameToUpdate.Text);
-                controller.ShowEvents(eventsGridView);
+                Controller.UpdateNameEvent(Convert.ToInt32(textBoxIDToUpdate.Text), textBoxNameToUpdate.Text);
+                Controller.ShowEvents(eventsGridView);
                 textBoxIDToUpdate.Clear();
                 textBoxNameToUpdate.Clear();
             }
@@ -114,7 +108,7 @@ namespace CSharpMagistrProject.Input.InputForms
                 Controller.ShowMsg(exception.Message);
                 try
                 {
-                    controller.AddToLog(exception);
+                    Controller.AddToLog(exception);
                 }
                 catch (Exception ex)
                 {
@@ -126,7 +120,7 @@ namespace CSharpMagistrProject.Input.InputForms
         }
 
         //puts only numbers and backspace in textbox
-        public void CheckKeyPressedIsDigit(object sender, KeyPressEventArgs e)
+        private void CheckKeyPressedIsDigit(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
             if (char.IsDigit(ch) == false && ch != (int)Keys.Escape)

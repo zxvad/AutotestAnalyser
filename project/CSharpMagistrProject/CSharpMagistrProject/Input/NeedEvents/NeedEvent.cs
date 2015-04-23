@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.OleDb;
-using System.Windows.Forms;
 using CSharpMagistrProject.Check.CheckSystem;
 using CSharpMagistrProject.DB;
 using CSharpMagistrProject.Input.Events;
@@ -11,30 +9,30 @@ namespace CSharpMagistrProject.Input.NeedEvents
     //Необходимые события
     class NeedEvent
     {
-        private Event listEvent;
-        private CheckNeedEvent check;
-        private string sourceNeedEventTable;
+        private readonly Event _listEvent;
+        private readonly CheckNeedEvent _check;
+        private readonly string _sourceNeedEventTable;
 
         public NeedEvent(DataBase sourceDataBase, string sourceEventTable, string sourceNeedEventTable)
         {
-            listEvent=new Event(sourceDataBase,sourceEventTable);
-            this.sourceNeedEventTable = sourceNeedEventTable;
-            check=new CheckNeedEvent(sourceDataBase,sourceNeedEventTable);
+            _listEvent=new Event(sourceDataBase,sourceEventTable);
+            _sourceNeedEventTable = sourceNeedEventTable;
+            _check=new CheckNeedEvent(sourceDataBase,sourceNeedEventTable);
         }
         
         //Добавление необходимого события
         public void Add(int idEvent)
         {
-            if (check.CheckForUnique(idEvent))
+            if (_check.CheckForUnique(idEvent))
             {
-                string queryText = "INSERT INTO " + sourceNeedEventTable + "(id, idEvent) " +
+                string queryText = "INSERT INTO " + _sourceNeedEventTable + "(id, idEvent) " +
                                    "VALUES (?,?)";
 
                 Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
-                parametrsDictionary.Add("id", listEvent.NewId(sourceNeedEventTable));
+                parametrsDictionary.Add("id", _listEvent.NewId(_sourceNeedEventTable));
                 parametrsDictionary.Add("idEvent", idEvent);
 
-                listEvent.DataBase.DoQuery(queryText, parametrsDictionary);
+                _listEvent.DataBase.DoQuery(queryText, parametrsDictionary);
             }
             else
             {
@@ -45,31 +43,31 @@ namespace CSharpMagistrProject.Input.NeedEvents
 		//Удаление необходимого события по id
         public void Del(int id)
         {
-            string queryText = "DELETE FROM " + sourceNeedEventTable +
+            string queryText = "DELETE FROM " + _sourceNeedEventTable +
                                " WHERE id = ?";
             Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
             parametrsDictionary.Add("id", id);
 
-            listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
+            _listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
         }
 
         //Изменение записи о событии
         public void Update(int id, int newIdEvent)
         {
-            string queryText = "UPDATE " + sourceNeedEventTable +
+            string queryText = "UPDATE " + _sourceNeedEventTable +
                                " SET idEvent = ?" +
                                " WHERE id = ?";
             Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
             parametrsDictionary.Add("idEvent", newIdEvent);
             parametrsDictionary.Add("id", id);
 
-            listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
+            _listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
         }
 
         //Удаление всех необходимых событий из БД
         public void Clear()
         {
-            listEvent.DataBase.Clear(sourceNeedEventTable);
+            _listEvent.DataBase.Clear(_sourceNeedEventTable);
         }
     }
 }

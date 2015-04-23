@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using CSharpMagistrProject.DB;
-using CSharpMagistrProject.Input.Events;
 using CSharpMagistrProject.Input.InputForms;
 using CSharpMagistrProject.Output.OutputForm;
 
@@ -10,37 +8,31 @@ namespace CSharpMagistrProject.MVC
 
     public partial class View : Form, IView
     {
-        public const int ESCAPE = 8;
-        public InputForm InputForm;
-        public OutputForm OutputForm;
+        private InputForm _inputForm;
+        private OutputForm _outputForm;
 
-        private Controller controller;
-        public Controller Controller
-        {
-            get { return controller; }
-            set { controller = value; }
-        }
+        public Controller Controller { get; set; }
 
         public View(Controller controller)
         {
             InitializeComponent();
-            this.Controller = controller;
+            Controller = controller;
         }
 
         private void View_Load(object sender, EventArgs e)
         {
-            InputForm = new InputForm(this.Controller);
-            OutputForm = new OutputForm(this.Controller);
+            _inputForm = new InputForm(Controller);
+            _outputForm = new OutputForm(Controller);
         }
 
         private void showInputFormButton_Click(object sender, EventArgs e)
         {
-            InputForm.Show();
+            _inputForm.Show();
         }
 
         private void showOutputFormButton_Click(object sender, EventArgs e)
         {
-            OutputForm.Show();
+            _outputForm.Show();
         }
     }
 }

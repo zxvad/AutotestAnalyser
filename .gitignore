@@ -11,3 +11,6 @@
 *.lai
 *.la
 *.a
+
+/project/CSharpMagistrProject/CSharpMagistrProject/bin/*
+/project/CSharpMagistrProject/CSharpMagistrProject/obj/*

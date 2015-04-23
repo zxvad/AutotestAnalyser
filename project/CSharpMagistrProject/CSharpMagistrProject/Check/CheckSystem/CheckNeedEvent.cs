@@ -7,13 +7,13 @@ namespace CSharpMagistrProject.Check.CheckSystem
 {
     public class CheckNeedEvent
     {
-        private DataBase dataBase;
-        private string sourceNeedEventTable;
+        private readonly DataBase _dataBase;
+        private readonly string _sourceNeedEventTable;
 
         public CheckNeedEvent(DataBase sourceDataBase, string sourceNeedEventTable)
         {
-            dataBase = sourceDataBase;
-            this.sourceNeedEventTable = sourceNeedEventTable;
+            _dataBase = sourceDataBase;
+            _sourceNeedEventTable = sourceNeedEventTable;
         }
 
 
@@ -24,13 +24,13 @@ namespace CSharpMagistrProject.Check.CheckSystem
         public bool CheckForUnique(int idEvent)
         {
             string queryText = "SELECT COUNT(*) " +
-                               "FROM " + sourceNeedEventTable +
+                               "FROM " + _sourceNeedEventTable +
                                " WHERE idEvent=?";
 
             Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
             parametrsDictionary.Add("idEvent", idEvent);
 
-            if (dataBase.DoScalarQuery(queryText, parametrsDictionary) > 0)
+            if (_dataBase.DoScalarQuery(queryText, parametrsDictionary) > 0)
                 return false;
             return true;
         }

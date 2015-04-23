@@ -1,7 +1,7 @@
 ﻿
 namespace CSharpMagistrProject
 {
-    enum Keys
+    public enum Keys
     {
         Escape=8,
         NotExist=-1,

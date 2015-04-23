@@ -1,19 +1,18 @@
 ﻿
 using System.Collections.Generic;
-using System.Data.OleDb;
 using CSharpMagistrProject.DB;
 
 namespace CSharpMagistrProject.Check.CheckSystem
 {
     internal class CheckEvent
     {
-        private DataBase dataBase;
-        private string sourceEventTable;
+        private readonly DataBase _dataBase;
+        private readonly string _sourceEventTable;
 
         public CheckEvent(DataBase dataBase, string sourceEventTable)
         {
-            this.dataBase = dataBase;
-            this.sourceEventTable = sourceEventTable;
+            _dataBase = dataBase;
+            _sourceEventTable = sourceEventTable;
         }
 
         public void CheckForCorrect()
@@ -24,13 +23,13 @@ namespace CSharpMagistrProject.Check.CheckSystem
         public bool CheckForUnique(string nameEvent)
         {
             string queryText = "SELECT COUNT(*) " +
-                               "FROM " + sourceEventTable +
+                               "FROM " + _sourceEventTable +
                                " WHERE UCASE(name)=UCASE(?)";
 
             Dictionary<string, object> parametrsDictionary = new Dictionary<string, object>();
             parametrsDictionary.Add("nameEvent", nameEvent);
 
-            if (dataBase.DoScalarQuery(queryText, parametrsDictionary) > 0)
+            if (_dataBase.DoScalarQuery(queryText, parametrsDictionary) > 0)
                 return false;
             return true;
         }

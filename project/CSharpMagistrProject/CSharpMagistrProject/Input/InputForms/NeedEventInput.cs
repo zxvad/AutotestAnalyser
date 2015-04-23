@@ -6,18 +6,12 @@ namespace CSharpMagistrProject.Input.InputForms
 {
     public partial class NeedEventInput : Form, IView
     {
-        private Controller controller;
-
-        public Controller Controller
-        {
-            get { return controller; }
-            set { controller = value; }
-        }
+        public Controller Controller { get; set; }
 
         public NeedEventInput(Controller controller)
         {
             InitializeComponent();
-            this.Controller = controller;
+            Controller = controller;
         }
 
         private void NeedEventInput_FormClosing(object sender, FormClosingEventArgs e)
@@ -33,7 +27,7 @@ namespace CSharpMagistrProject.Input.InputForms
         {
             try
             {
-                controller.ShowNeedEvents(needEventGridView);
+                Controller.ShowNeedEvents(needEventGridView);
 
             }
             catch (Exception exception)
@@ -41,7 +35,7 @@ namespace CSharpMagistrProject.Input.InputForms
                 Controller.ShowMsg(exception.Message);
                 try
                 {
-                    controller.AddToLog(exception);
+                    Controller.AddToLog(exception);
                 }
                 catch (Exception ex)
                 {
@@ -56,8 +50,8 @@ namespace CSharpMagistrProject.Input.InputForms
         {
             try
             {
-                controller.AddNeedEvent(Convert.ToInt32(textBoxIdNeedEventToAdd.Text));
-                controller.ShowNeedEvents(needEventGridView);
+                Controller.AddNeedEvent(Convert.ToInt32(textBoxIdNeedEventToAdd.Text));
+                Controller.ShowNeedEvents(needEventGridView);
                 textBoxIdNeedEventToAdd.Clear();
             }
             catch (Exception exception)
@@ -65,7 +59,7 @@ namespace CSharpMagistrProject.Input.InputForms
                 Controller.ShowMsg(exception.Message);
                 try
                 {
-                    controller.AddToLog(exception);
+                    Controller.AddToLog(exception);
                 }
                 catch (Exception ex)
                 {
@@ -80,8 +74,8 @@ namespace CSharpMagistrProject.Input.InputForms
         {
             try
             {
-                controller.DelNeedEvent(Convert.ToInt32(textBoxIdNeedEventToDel.Text));
-                controller.ShowNeedEvents(needEventGridView);
+                Controller.DelNeedEvent(Convert.ToInt32(textBoxIdNeedEventToDel.Text));
+                Controller.ShowNeedEvents(needEventGridView);
                 textBoxIdNeedEventToDel.Clear();
             }
             catch (Exception exception)
@@ -89,7 +83,7 @@ namespace CSharpMagistrProject.Input.InputForms
                 Controller.ShowMsg(exception.Message);
                 try
                 {
-                    controller.AddToLog(exception);
+                    Controller.AddToLog(exception);
                 }
                 catch (Exception ex)
                 {
@@ -104,8 +98,8 @@ namespace CSharpMagistrProject.Input.InputForms
         {
             try
             {
-                controller.UpdateNeedEvent(Convert.ToInt32(textBoxIdNeedEventToUpdate.Text), Convert.ToInt32(textBoxNewIdNeedEvent.Text));
-                controller.ShowNeedEvents(needEventGridView);
+                Controller.UpdateNeedEvent(Convert.ToInt32(textBoxIdNeedEventToUpdate.Text), Convert.ToInt32(textBoxNewIdNeedEvent.Text));
+                Controller.ShowNeedEvents(needEventGridView);
                 textBoxIdNeedEventToUpdate.Clear();
                 textBoxNewIdNeedEvent.Clear();
             }
@@ -114,7 +108,7 @@ namespace CSharpMagistrProject.Input.InputForms
                 Controller.ShowMsg(exception.Message);
                 try
                 {
-                    controller.AddToLog(exception);
+                    Controller.AddToLog(exception);
                 }
                 catch (Exception ex)
                 {
@@ -126,7 +120,7 @@ namespace CSharpMagistrProject.Input.InputForms
         }
 
         //puts only numbers and backspace in textbox
-        public void CheckKeyPressedIsDigit(object sender, KeyPressEventArgs e)
+        private void CheckKeyPressedIsDigit(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
             if (char.IsDigit(ch) == false && ch != (int)Keys.Escape)

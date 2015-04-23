@@ -6,19 +6,19 @@ namespace CSharpMagistrProject.Output.SelectResult
 {
     class SelectResults
     {
-        private readonly DataBase dataBase;
-        private readonly string sourceEventTable;
-        private string sourceNeedEventTable;
-        private string sourceDoneEventTable;
-        private string sourceResultTable;
+        private readonly DataBase _dataBase;
+        private readonly string _sourceEventTable;
+        private readonly string _sourceNeedEventTable;
+        private readonly string _sourceDoneEventTable;
+        private readonly string _sourceResultTable;
 
         public SelectResults(DataBase sourceDataBase,string sourceEventTable, string sourceNeedEventTable, string sourceDoneEventTable, string sourceResultTable)
         {
-            dataBase = sourceDataBase;
-            this.sourceEventTable = sourceEventTable;
-            this.sourceNeedEventTable = sourceNeedEventTable;
-            this.sourceDoneEventTable = sourceDoneEventTable;
-            this.sourceResultTable = sourceResultTable;
+            _dataBase = sourceDataBase;
+            _sourceEventTable = sourceEventTable;
+            _sourceNeedEventTable = sourceNeedEventTable;
+            _sourceDoneEventTable = sourceDoneEventTable;
+            _sourceResultTable = sourceResultTable;
         }
 
         //  Вывод результирующей таблицы
@@ -27,31 +27,31 @@ namespace CSharpMagistrProject.Output.SelectResult
             
             ProcessResultTable();
             string queryText = "SELECT Result.id, Event.name , Result.isDone as Выполнено " +
-                   "FROM (" + sourceResultTable + " Result " +
-                   "LEFT JOIN " + sourceEventTable + " Event " +
+                   "FROM (" + _sourceResultTable + " Result " +
+                   "LEFT JOIN " + _sourceEventTable + " Event " +
                    "ON Result.idEvent = Event.id)";
-            receiverGridView.DataSource = dataBase.DoSelectQuery(queryText);
+            receiverGridView.DataSource = _dataBase.DoSelectQuery(queryText);
         }
 
         // Формирование результирующей таблицы
         private void ProcessResultTable()
         {
             // Очистка таблицы
-            dataBase.Clear(sourceResultTable);
+            _dataBase.Clear(_sourceResultTable);
 
             // Копирование записей с необходимыми событиями в результирующую таблицу
-            string queryText = "INSERT INTO " + sourceResultTable + "(id, idEvent) " +
-                               "SELECT id, idEvent FROM " + sourceNeedEventTable;
-            dataBase.DoQuery(queryText);
+            string queryText = "INSERT INTO " + _sourceResultTable + "(id, idEvent) " +
+                               "SELECT id, idEvent FROM " + _sourceNeedEventTable;
+            _dataBase.DoQuery(queryText);
 
             // Вычисление результатов выполнения каждого события
-            queryText = "UPDATE " + sourceResultTable +
+            queryText = "UPDATE " + _sourceResultTable +
                         " SET isDone=true " +
                         "WHERE id in " +
                         "(SELECT Result.id " +
-                        "FROM " + sourceResultTable + " as Result, " + sourceDoneEventTable + " as Done " +
+                        "FROM " + _sourceResultTable + " as Result, " + _sourceDoneEventTable + " as Done " +
                         "WHERE Result.idEvent = Done.idEvent)";
-            dataBase.DoQuery(queryText);
+            _dataBase.DoQuery(queryText);
         }
     }
 }
