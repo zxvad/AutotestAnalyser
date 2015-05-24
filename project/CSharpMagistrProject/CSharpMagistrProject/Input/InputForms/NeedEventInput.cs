@@ -4,16 +4,29 @@ using CSharpMagistrProject.MVC;
 
 namespace CSharpMagistrProject.Input.InputForms
 {
+    /// <summary>
+    /// Форма для редактирования списка необходимых событий
+    /// </summary>
     public partial class NeedEventInput : Form, IView
     {
+        /// <summary>
+        /// Контроллер (MVC)
+        /// </summary>
         public Controller Controller { get; set; }
 
+        /// <summary>
+        /// Конструктор по контроллеру
+        /// </summary>
+        /// <param name="controller">Контроллер</param>
         public NeedEventInput(Controller controller)
         {
             InitializeComponent();
             Controller = controller;
         }
 
+        /// <summary>
+        /// Событие при закрытии окна
+        /// </summary>
         private void NeedEventInput_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -23,6 +36,9 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
+        /// <summary>
+        /// Событие при загрузке окна
+        /// </summary>
         private void NeedEventInput_Load(object sender, EventArgs e)
         {
             try
@@ -46,6 +62,9 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
+        /// <summary>
+        /// Событие нажатия на кнопку добавления необходимого события
+        /// </summary>
         private void addNeedEventButton_Click(object sender, EventArgs e)
         {
             try
@@ -70,6 +89,9 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
+        /// <summary>
+        /// Событие нажатия на кнопку удаления необходимого события
+        /// </summary>
         private void deleteNeedEventButton_Click(object sender, EventArgs e)
         {
             try
@@ -94,6 +116,9 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
+        /// <summary>
+        /// Событие нажатия на кнопку изменения необходимого события
+        /// </summary>
         private void updateNeedEventButton_Click(object sender, EventArgs e)
         {
             try
@@ -119,11 +144,14 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
-        //puts only numbers and backspace in textbox
+        /// <summary>
+        /// Событие при вводе символа в textbox
+        /// </summary>
         private void CheckKeyPressedIsDigit(object sender, KeyPressEventArgs e)
         {
+            //Разрешается ввод только цифр и backspace
             char ch = e.KeyChar;
-            if (char.IsDigit(ch) == false && ch != (int)Keys.Escape)
+            if (char.IsDigit(ch) == false && ch != (int)KeysEnum.Backspace)
             {
                 e.Handled = true;
             }

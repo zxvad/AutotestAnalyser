@@ -12,11 +12,19 @@ namespace CSharpMagistrProject
         [STAThread]
         static void Main()
         {
-            Controller controller=new Controller();
+            try
+            {
+                Controller controller = new Controller();
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(controller.CreateFormView());
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(controller.CreateFormView());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
     }
 }

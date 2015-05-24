@@ -144,6 +144,7 @@
             this.Controls.Add(this.textBoxNameToAdd);
             this.Controls.Add(this.eventsGridView);
             this.Name = "EventInput";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Анализ ПО контроллера АСУТП";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EventInput_FormClosing);
             this.Load += new System.EventHandler(this.View_Load);

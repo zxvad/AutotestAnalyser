@@ -60,6 +60,7 @@
             this.Controls.Add(this.showNeedEventInputFormButton);
             this.Controls.Add(this.showEventInputFormButton);
             this.Name = "InputForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Ввод данных";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InputForm_FormClosing);
             this.Load += new System.EventHandler(this.InputForm_Load);

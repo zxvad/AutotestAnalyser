@@ -6,13 +6,32 @@ using CSharpMagistrProject.MVC;
 
 namespace CSharpMagistrProject.Input.NeedEvents
 {
-    //Необходимые события
-    class NeedEvent
+    /// <summary>
+    /// Необходимые события
+    /// </summary>
+    public class NeedEvent
     {
+        /// <summary>
+        /// Список событий
+        /// </summary>
         private readonly Event _listEvent;
+
+        /// <summary>
+        /// Проверка необходимых событий
+        /// </summary>
         private readonly CheckNeedEvent _check;
+
+        /// <summary>
+        /// Имя таблицы необходимых событий
+        /// </summary>
         private readonly string _sourceNeedEventTable;
 
+        /// <summary>
+        /// Конструктор по БД и именам таблиц
+        /// </summary>
+        /// <param name="sourceDataBase">База данных</param>
+        /// <param name="sourceEventTable">Имя таблицы событий</param>
+        /// <param name="sourceNeedEventTable">Имя таблицы необходимых событий</param>
         public NeedEvent(DataBase sourceDataBase, string sourceEventTable, string sourceNeedEventTable)
         {
             _listEvent=new Event(sourceDataBase,sourceEventTable);
@@ -20,7 +39,10 @@ namespace CSharpMagistrProject.Input.NeedEvents
             _check=new CheckNeedEvent(sourceDataBase,sourceNeedEventTable);
         }
         
-        //Добавление необходимого события
+        /// <summary>
+        /// Добавление необходимого события
+        /// </summary>
+        /// <param name="idEvent">id события из списка событий для добавления</param>
         public void Add(int idEvent)
         {
             if (_check.CheckForUnique(idEvent))
@@ -40,7 +62,10 @@ namespace CSharpMagistrProject.Input.NeedEvents
             }
         }
 
-		//Удаление необходимого события по id
+		/// <summary>
+        /// Удаление необходимого события по id
+        /// </summary>
+        /// <param name="id">id необхордимого события для удаления</param>
         public void Del(int id)
         {
             string queryText = "DELETE FROM " + _sourceNeedEventTable +
@@ -51,7 +76,11 @@ namespace CSharpMagistrProject.Input.NeedEvents
             _listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
         }
 
-        //Изменение записи о событии
+        /// <summary>
+        /// Изменение записи о событии
+        /// </summary>
+        /// <param name="id">id события, которое необходимо изменить</param>
+        /// <param name="newIdEvent">новое id события из списка событий </param>
         public void Update(int id, int newIdEvent)
         {
             string queryText = "UPDATE " + _sourceNeedEventTable +
@@ -64,7 +93,9 @@ namespace CSharpMagistrProject.Input.NeedEvents
             _listEvent.DataBase.DoQuery(queryText,parametrsDictionary);
         }
 
-        //Удаление всех необходимых событий из БД
+        /// <summary>
+        /// Удаление всех необходимых событий из БД
+        /// </summary>
         public void Clear()
         {
             _listEvent.DataBase.Clear(_sourceNeedEventTable);

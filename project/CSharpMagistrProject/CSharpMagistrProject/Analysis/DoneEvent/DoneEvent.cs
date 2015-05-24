@@ -4,18 +4,37 @@ using CSharpMagistrProject.Reading.InputSignal;
 
 namespace CSharpMagistrProject.Analysis.DoneEvent
 {
-    //Совершенные события
-    class DoneEvent
+   
+    /// <summary>
+    /// Совершенные события
+    /// </summary>
+    public class DoneEvent
     {
+        /// <summary>
+        /// База данных
+        /// </summary>
         private readonly DataBase _dataBase;
+
+        /// <summary>
+        /// Имя таблицы совершенных событий
+        /// </summary>
         private readonly string _sourceDoneEventTable;
 
+        /// <summary>
+        /// Конструктор по БД и имени таблицы
+        /// </summary>
+        /// <param name="dataBase">База данных</param>
+        /// <param name="sourceDoneEventTable">Имя таблицы совершенных событий</param>
         public DoneEvent(DataBase dataBase, string sourceDoneEventTable)
         {
             _dataBase = dataBase;
             _sourceDoneEventTable = sourceDoneEventTable;
         }
 
+        /// <summary>
+        /// Добавление совершенного события в БД
+        /// </summary>
+        /// <param name="inputSignal">Исходный сигнал</param>
         public void Add(InputSignal inputSignal)
         {
             string queryText = "INSERT INTO " + _sourceDoneEventTable + 
@@ -31,7 +50,9 @@ namespace CSharpMagistrProject.Analysis.DoneEvent
             _dataBase.DoQuery(queryText,parametrsDictionary);
         }
 
-        //Удаление всех произошедших событий в БД
+        /// <summary>
+        /// Удаление всех произошедших событий в БД
+        /// </summary>
         public void Clear()
         {
             _dataBase.Clear(_sourceDoneEventTable);

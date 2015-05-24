@@ -60,6 +60,7 @@
             this.Controls.Add(this.showOutputFormButton);
             this.Controls.Add(this.showInputFormButton);
             this.Name = "View";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Анализ ПО контроллера АСУТП";
             this.Load += new System.EventHandler(this.View_Load);
             this.ResumeLayout(false);

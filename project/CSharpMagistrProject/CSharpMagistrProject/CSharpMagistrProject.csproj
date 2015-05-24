@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,7 +70,7 @@
     <Compile Include="Input\InputForms\EventInput.Designer.cs">
       <DependentUpon>EventInput.cs</DependentUpon>
     </Compile>
-    <Compile Include="Keys.cs" />
+    <Compile Include="KeysEnum.cs" />
     <Compile Include="MVC\Controller.cs" />
     <Compile Include="DB\DataBase.cs" />
     <Compile Include="Input\Events\Event.cs" />
@@ -117,7 +118,7 @@
     <EmbeddedResource Include="Output\OutputForm\OutputForm.resx">
       <DependentUpon>OutputForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Web.config" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

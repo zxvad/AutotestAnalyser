@@ -1,6 +1,9 @@
 ﻿namespace CSharpMagistrProject.Analysis.DoneEvent
 {
-    class EventFinder
+    /// <summary>
+    /// Класс, отвечающий за нахождение совершенный событий
+    /// </summary>
+    public class EventFinder
     {
         public void Calculate(){}
         public void Clear(){}

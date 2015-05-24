@@ -31,3 +31,4 @@ D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMag
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.MVC.View.resources
 D:\Вася\Власов\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Output.OutputForm.OutputForm.resources
 C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\obj\x86\Debug\CSharpMagistrProject.Output.OutputForm.OutputForm.resources
+C:\Users\Вася\Documents\GitHub\AutotestAnalyser\project\CSharpMagistrProject\CSharpMagistrProject\bin\Debug\CSharpMagistrProject.exe.config

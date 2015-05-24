@@ -4,18 +4,29 @@ using CSharpMagistrProject.MVC;
 
 namespace CSharpMagistrProject.Input.InputForms
 {
-    
+    /// <summary>
+    /// Форма для редактирования списка событий
+    /// </summary>
     public partial class EventInput : Form, IView
     {
+        /// <summary>
+        /// Контроллер (MVC)
+        /// </summary>
         public Controller Controller { get; set; }
 
+        /// <summary>
+        /// Конструктор по контроллеру
+        /// </summary>
+        /// <param name="controller">Контроллер</param>
         public EventInput(Controller controller)
         {
             InitializeComponent();
             Controller = controller;
         }
 
-		/// Используется при загрузке формы EventInput
+		/// <summary>
+        /// Событие при загрузке формы 
+		/// </summary>
         private void View_Load(object sender, EventArgs e)
         {
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
@@ -43,6 +54,9 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
+        /// <summary>
+        /// Нажатие на кнопку добавления события
+        /// </summary>
         private void addButton_Click(object sender, EventArgs e)
         {
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
@@ -68,6 +82,9 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
+        /// <summary>
+        /// Нажатие на кнопку удаления события
+        /// </summary>
         private void delButton_Click(object sender, EventArgs e)
         {
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
@@ -93,6 +110,9 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
+        /// <summary>
+        /// Нажатие на кнопку изменения события
+        /// </summary>
         private void updateButton_Click(object sender, EventArgs e)
         {
 			//try/catch в 2 этажа это не решение а костыль, который ни к чему хорошему не приведет
@@ -119,16 +139,22 @@ namespace CSharpMagistrProject.Input.InputForms
             }
         }
 
-        //puts only numbers and backspace in textbox
+        /// <summary>
+        /// Событие при вводе символа в textbox
+        /// </summary>
         private void CheckKeyPressedIsDigit(object sender, KeyPressEventArgs e)
         {
+            //Разрешается ввод только цифр и backspace
             char ch = e.KeyChar;
-            if (char.IsDigit(ch) == false && ch != (int)Keys.Escape)
+            if (char.IsDigit(ch) == false && ch != (int)KeysEnum.Backspace)
             {
                 e.Handled = true;
             }
         }
 
+        /// <summary>
+        /// Событие при закрытии окна
+        /// </summary>
         private void EventInput_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)

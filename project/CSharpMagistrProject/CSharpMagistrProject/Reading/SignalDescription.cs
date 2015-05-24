@@ -1,6 +1,8 @@
 ﻿namespace CSharpMagistrProject.Reading
 {
-    //Данные о сигнале
+    /// <summary>
+    /// Данные о сигнале
+    /// </summary>
     public struct SignalDescription
     {
         public float ENGINEER_VALUE;

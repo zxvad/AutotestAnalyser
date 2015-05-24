@@ -102,7 +102,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "OutputForm";
-            this.Text = "OutputForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "Результаты";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OutputForm_FormClosing);
             this.Load += new System.EventHandler(this.OutputForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.eventGridView)).EndInit();

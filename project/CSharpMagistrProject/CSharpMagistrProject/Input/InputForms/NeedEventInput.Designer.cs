@@ -146,6 +146,7 @@
             this.Controls.Add(this.addNeedEventButton);
             this.Controls.Add(this.needEventGridView);
             this.Name = "NeedEventInput";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Необходимые события";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NeedEventInput_FormClosing);
             this.Load += new System.EventHandler(this.NeedEventInput_Load);

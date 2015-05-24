@@ -4,13 +4,22 @@ using System.Text;
 
 namespace CSharpMagistrProject.DB
 {
+    /// <summary>
+    /// Класс для работы с логом
+    /// </summary>
     public class LogFile
     {
+        /// <summary>
+        /// Объект для реализации потокобезопасности
+        /// </summary>
         private static object sync = new object();
 
+        /// <summary>
+        /// Добавить запись об исключении в Лог 
+        /// </summary>
+        /// <param name="ex">Исключение</param>
         public void Write(Exception ex)
         {
-
             // Путь .\\Log
             string pathToLog = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
             // Создаем директорию, если нужно

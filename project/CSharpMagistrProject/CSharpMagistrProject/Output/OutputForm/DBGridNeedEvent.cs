@@ -2,7 +2,7 @@
 
 namespace CSharpMagistrProject.Output.OutputForm
 {
-    class DBGridNeedEvent
+    class DbGridNeedEvent
     {
         public void GetResults(){}
         public void Sort(){}
