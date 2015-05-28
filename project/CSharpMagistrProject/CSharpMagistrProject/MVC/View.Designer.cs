@@ -34,7 +34,7 @@
             // 
             // showInputFormButton
             // 
-            this.showInputFormButton.Location = new System.Drawing.Point(24, 114);
+            this.showInputFormButton.Location = new System.Drawing.Point(30, 39);
             this.showInputFormButton.Name = "showInputFormButton";
             this.showInputFormButton.Size = new System.Drawing.Size(150, 117);
             this.showInputFormButton.TabIndex = 0;
@@ -44,9 +44,9 @@
             // 
             // showOutputFormButton
             // 
-            this.showOutputFormButton.Location = new System.Drawing.Point(199, 114);
+            this.showOutputFormButton.Location = new System.Drawing.Point(231, 39);
             this.showOutputFormButton.Name = "showOutputFormButton";
-            this.showOutputFormButton.Size = new System.Drawing.Size(168, 117);
+            this.showOutputFormButton.Size = new System.Drawing.Size(150, 117);
             this.showOutputFormButton.TabIndex = 1;
             this.showOutputFormButton.Text = "Результаты";
             this.showOutputFormButton.UseVisualStyleBackColor = true;
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(433, 313);
+            this.ClientSize = new System.Drawing.Size(416, 191);
             this.Controls.Add(this.showOutputFormButton);
             this.Controls.Add(this.showInputFormButton);
             this.Name = "View";

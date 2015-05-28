@@ -34,6 +34,7 @@
             this.eventGridView = new System.Windows.Forms.DataGridView();
             this.needEventGridView = new System.Windows.Forms.DataGridView();
             this.resultGridView = new System.Windows.Forms.DataGridView();
+            this.ResultTextBox = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.eventGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.needEventGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resultGridView)).BeginInit();
@@ -42,7 +43,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 33);
+            this.label1.Location = new System.Drawing.Point(98, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 0;
@@ -60,7 +61,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(619, 33);
+            this.label3.Location = new System.Drawing.Point(642, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 2;
@@ -68,33 +69,60 @@
             // 
             // eventGridView
             // 
+            this.eventGridView.AllowUserToAddRows = false;
+            this.eventGridView.AllowUserToDeleteRows = false;
+            this.eventGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.eventGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.eventGridView.Location = new System.Drawing.Point(12, 69);
+            this.eventGridView.MaximumSize = new System.Drawing.Size(250, 400);
             this.eventGridView.Name = "eventGridView";
-            this.eventGridView.Size = new System.Drawing.Size(232, 389);
+            this.eventGridView.ReadOnly = true;
+            this.eventGridView.Size = new System.Drawing.Size(250, 400);
             this.eventGridView.TabIndex = 3;
             // 
             // needEventGridView
             // 
+            this.needEventGridView.AllowUserToAddRows = false;
+            this.needEventGridView.AllowUserToDeleteRows = false;
+            this.needEventGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.needEventGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.needEventGridView.Location = new System.Drawing.Point(270, 69);
             this.needEventGridView.Name = "needEventGridView";
-            this.needEventGridView.Size = new System.Drawing.Size(242, 389);
+            this.needEventGridView.ReadOnly = true;
+            this.needEventGridView.Size = new System.Drawing.Size(250, 400);
             this.needEventGridView.TabIndex = 4;
             // 
             // resultGridView
             // 
+            this.resultGridView.AllowUserToAddRows = false;
+            this.resultGridView.AllowUserToDeleteRows = false;
+            this.resultGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.resultGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.resultGridView.Location = new System.Drawing.Point(528, 69);
             this.resultGridView.Name = "resultGridView";
-            this.resultGridView.Size = new System.Drawing.Size(387, 389);
+            this.resultGridView.ReadOnly = true;
+            this.resultGridView.Size = new System.Drawing.Size(250, 400);
             this.resultGridView.TabIndex = 5;
+            // 
+            // ResultTextBox
+            // 
+            this.ResultTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ResultTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ResultTextBox.Location = new System.Drawing.Point(0, 511);
+            this.ResultTextBox.Name = "ResultTextBox";
+            this.ResultTextBox.Size = new System.Drawing.Size(834, 25);
+            this.ResultTextBox.TabIndex = 6;
+            this.ResultTextBox.Text = "Качество ПО контроллера: ";
+            this.ResultTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // OutputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 497);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(834, 536);
+            this.Controls.Add(this.ResultTextBox);
             this.Controls.Add(this.resultGridView);
             this.Controls.Add(this.needEventGridView);
             this.Controls.Add(this.eventGridView);
@@ -122,5 +150,6 @@
         private System.Windows.Forms.DataGridView eventGridView;
         private System.Windows.Forms.DataGridView needEventGridView;
         private System.Windows.Forms.DataGridView resultGridView;
+        private System.Windows.Forms.Label ResultTextBox;
     }
 }
